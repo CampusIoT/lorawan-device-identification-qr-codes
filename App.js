@@ -6,15 +6,19 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, StatusBar } from 'react-native'
+import { ApplicationProvider } from '@ui-kitten/components'
+import * as eva from '@eva-design/eva'
+
 const App = () => {
+
   return (
-    <>
-      <StatusBar />
-    </>
-  );
-};
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <StatusBar/>
+    </ApplicationProvider>
+  )
+}
 
 const styles = StyleSheet.create({})
 

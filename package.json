@@ -10,8 +10,14 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@eva-design/eva": "^2.0.0",
+    "@ui-kitten/components": "^5.0.0",
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "0.63.4",
+    "react-native-camera": "^3.42.2",
+    "react-native-permissions": "^2.2.2",
+    "react-native-qrcode-scanner": "^1.5.3",
+    "react-native-svg": "^9.13.6"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
