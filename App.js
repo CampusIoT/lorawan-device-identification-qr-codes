@@ -8,10 +8,12 @@
 
 import React from 'react';
 import { StyleSheet, StatusBar } from 'react-native'
+import NodeRegisterPage from './components/NodeRegisterPage';
 const App = () => {
   return (
     <>
       <StatusBar />
+      <NodeRegisterPage></NodeRegisterPage>
     </>
   );
 };
