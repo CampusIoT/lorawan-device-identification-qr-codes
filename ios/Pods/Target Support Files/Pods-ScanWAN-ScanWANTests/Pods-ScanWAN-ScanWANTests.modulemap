@@ -1,0 +1,6 @@
+module Pods_ScanWAN_ScanWANTests {
+  umbrella header "Pods-ScanWAN-ScanWANTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
