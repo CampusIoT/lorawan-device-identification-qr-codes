@@ -10,7 +10,6 @@ import React, { useState } from 'react';
 import { StyleSheet, StatusBar } from 'react-native'
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
-import NodeRegisterPage from './components/NodeRegisterPage'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
 const App = () => {
@@ -20,7 +19,6 @@ const App = () => {
       <IconRegistry icons={EvaIconsPack}/>
         <ApplicationProvider {...eva} theme={eva.light}>
           <StatusBar />
-          <NodeRegisterPage></NodeRegisterPage>
         </ApplicationProvider>
     </>
   )
