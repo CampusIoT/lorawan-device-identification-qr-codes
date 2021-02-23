@@ -8,17 +8,24 @@
 
 import React, { useState } from 'react';
 import { StyleSheet, StatusBar } from 'react-native'
-import { ApplicationProvider } from '@ui-kitten/components'
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
+import NodeRegisterPage from './components/NodeRegisterPage'
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
 const App = () => {
 
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <StatusBar/>
-    </ApplicationProvider>
+    <>
+      <IconRegistry icons={EvaIconsPack}/>
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <StatusBar />
+          <NodeRegisterPage></NodeRegisterPage>
+        </ApplicationProvider>
+    </>
   )
 }
+
 
 const styles = StyleSheet.create({})
 
