@@ -15,8 +15,9 @@ import { getToken, getNumberOfApp, getAppList } from './api/Chirpstack';
 
 const App = () => {
 
-  const testC = () => {
-    getToken('GuestSandbox', 'PWD HERE').then(data => console.log(data.jwt)) // Put the password here to test API
+  const testC = async () => {
+    const n = await getNumberOfApp('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNTI5NzI0NSwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTUyMTA4NDUsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.r7VSE4co79CB2yQy2quK0UfDvEsiHJWui5jjX4W3Vo0')
+    console.log(n)
   }
 
   return (
