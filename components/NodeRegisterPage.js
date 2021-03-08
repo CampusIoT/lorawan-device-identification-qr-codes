@@ -40,12 +40,11 @@ class NodeRegisterPage extends React.Component {
                     <Button
                         style={styles.button}
                         accessoryLeft={arrowBackIcon}
-                        onPress={()=>console.log("Restart pressed")}>
+                        onPress={() => console.log("Restart pressed")}>
                         Restart registration
                     </Button>
                 </View>
-
-                <ChirpstackForm></ChirpstackForm>
+                {this._display_form()}
             </View>
         );
     }
@@ -62,8 +61,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     button: {
-        marginRight: 10,
-        marginTop: 5
+        marginRight: "4%",
+        marginTop: "2%"
     }
 })
 

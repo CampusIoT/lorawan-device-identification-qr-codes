@@ -1,6 +1,6 @@
 import React from "react";
-import { View, TextInput, Alert, StyleSheet } from "react-native";
-import { Text, Button, Icon, Card } from "@ui-kitten/components";
+import { ScrollView, View, TextInput, Alert, StyleSheet } from "react-native";
+import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 
 const checkIcon = (props) => (
@@ -9,106 +9,120 @@ const checkIcon = (props) => (
 
 export default function ChirpstackForm() {
     const { control, handleSubmit, errors } = useForm();
-    const onSubmit =    (data) => console.log(data);
+
+    const onSubmit = data => console.log(data);
 
     return (
-        <View style={styles.main_view}>
+        <ScrollView style={styles.main_view}>
 
             <Card style={styles.card} status='primary' disabled={true}>
                 <View style={styles.view_form}>
-                    <Text category="p1">device name</Text>
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
-                            <TextInput
-                                style={styles.input}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text category="p1">device name</Text>
+                                <Input
+                                    style={styles.input}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+                            </>
                         )}
                         name="name"
                         defaultValue=""
                     />
 
-                    <Text category="p1">applicationID</Text>
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
-                            <TextInput
-                                style={styles.input}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text category="p1">applicationID</Text>
+                                <Input
+                                    style={styles.input}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+                            </>
                         )}
                         name="applicationID"
                         rules={{ required: true }}
                         defaultValue=""
                     />
 
-                    <Text category="p1">description</Text>
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
-                            <TextInput
-                                style={styles.input}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text category="p1">description</Text>
+                                <Input
+                                    style={styles.input}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+                            </>
                         )}
                         name="description"
                         defaultValue=""
                     />
 
-                    <Text category="p1">devEUI</Text>
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
-                            <TextInput
-                                style={styles.input}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text category="p1">devEUI</Text>
+                                <Input
+                                    style={styles.input}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+                            </>
                         )}
                         name="devEUI"
                         defaultValue=""
                     />
 
-                    <Text category="p1">deviceProfileID</Text>
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
-                            <TextInput
-                                style={styles.input}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text category="p1">deviceProfileID</Text>
+                                <Input
+                                    style={styles.input}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+                            </>
                         )}
                         name="deviceProfileID"
                         defaultValue=""
                     />
 
-
-                    <Text category="p1">AppEUI</Text>
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
-                            <TextInput
-                                style={styles.input}
-                                onBlur={onBlur}
-                                onChangeText={value => onChange(value)}
-                                value={value}
-                            />
+                            <>
+                                <Text category="p1">AppEUI</Text>
+                                <Input
+                                    style={styles.input}
+                                    onBlur={onBlur}
+                                    onChangeText={value => onChange(value)}
+                                    value={value}
+                                />
+                            </>
                         )}
                         name="AppEUI"
                         defaultValue=""
                     />
 
                 </View>
+
+
             </Card>
 
             <Button
@@ -116,9 +130,10 @@ export default function ChirpstackForm() {
                 accessoryLeft={checkIcon}
                 onPress={handleSubmit(onSubmit)}>
                 Submit
-            </Button>
+                </Button>
 
-        </View >
+        </ScrollView >
+
     );
 }
 
@@ -135,7 +150,7 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: "white",
         height: 40,
-        borderWidth:0.1,
+        borderWidth: 0.1,
         borderRadius: 4
     },
     card: {
