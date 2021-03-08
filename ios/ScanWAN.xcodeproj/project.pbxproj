@@ -15,11 +15,12 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ScanWANTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ScanWANTests.m */; };
-		422598E2E990753669523753 /* libPods-ScanWAN-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7D5CFF7E23E6174EC18ECB /* libPods-ScanWAN-tvOS.a */; };
-		5A47B1073C63AE21156FB089 /* libPods-ScanWAN-ScanWANTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96690EE4494022D6CBB6B6CD /* libPods-ScanWAN-ScanWANTests.a */; };
-		720EA72199868070DF7EB25F /* libPods-ScanWAN-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9BCBDA54DC3F4FC2580C67 /* libPods-ScanWAN-tvOSTests.a */; };
+		4C2A733EF9A3D8BB7E6A6B85 /* libPods-ScanWAN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01969C22AE63B9DCFD87EA74 /* libPods-ScanWAN.a */; };
+		648EB09A25F66BC1009B78C4 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E9BBBD75AA8FCAAD34A3C551 /* libPods-ScanWAN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1165AAAAE79C3BDC7630AC7A /* libPods-ScanWAN.a */; };
+		976C862153FA9DE96F2E0207 /* libPods-ScanWAN-ScanWANTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AD290A5EA08A6961515AD1 /* libPods-ScanWAN-ScanWANTests.a */; };
+		E4B1D75405CF954764E071F5 /* libPods-ScanWAN-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C73BD6B41DE9A214B49C81 /* libPods-ScanWAN-tvOSTests.a */; };
+		F4B9B82297588B4E82273C24 /* libPods-ScanWAN-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 962F9775DA471693A69DCF8C /* libPods-ScanWAN-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,33 +41,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0038FCE7F574A66A2B3297DD /* Pods-ScanWAN-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOSTests/Pods-ScanWAN-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* ScanWANTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScanWANTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ScanWANTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanWANTests.m; sourceTree = "<group>"; };
-		0755CDA5511DFBE2A628E2F1 /* Pods-ScanWAN-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOSTests/Pods-ScanWAN-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		1165AAAAE79C3BDC7630AC7A /* libPods-ScanWAN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01969C22AE63B9DCFD87EA74 /* libPods-ScanWAN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* ScanWAN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanWAN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ScanWAN/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ScanWAN/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ScanWAN/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ScanWAN/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ScanWAN/main.m; sourceTree = "<group>"; };
-		149C4293D8CE8CD3FE9C7BC6 /* Pods-ScanWAN-ScanWANTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-ScanWANTests.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN-ScanWANTests/Pods-ScanWAN-ScanWANTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* ScanWAN-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ScanWAN-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ScanWAN-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ScanWAN-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E77E773F2E7496AE317B30D /* Pods-ScanWAN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN/Pods-ScanWAN.debug.xcconfig"; sourceTree = "<group>"; };
-		4A9BCBDA54DC3F4FC2580C67 /* libPods-ScanWAN-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4ADCB900C4C5A5FF77B4F936 /* Pods-ScanWAN-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOS/Pods-ScanWAN-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		32AD290A5EA08A6961515AD1 /* libPods-ScanWAN-ScanWANTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN-ScanWANTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		61C42D82F5880A2C296980CE /* Pods-ScanWAN-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOS/Pods-ScanWAN-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ScanWAN/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		91760DC0685482B00DFB9CB8 /* Pods-ScanWAN-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOSTests/Pods-ScanWAN-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		96690EE4494022D6CBB6B6CD /* libPods-ScanWAN-ScanWANTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN-ScanWANTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D87C17C0F48E213C2EE1ECD /* Pods-ScanWAN-ScanWANTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-ScanWANTests.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN-ScanWANTests/Pods-ScanWAN-ScanWANTests.release.xcconfig"; sourceTree = "<group>"; };
-		9E7D5CFF7E23E6174EC18ECB /* libPods-ScanWAN-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B44E337B47E01E1332601A62 /* Pods-ScanWAN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN/Pods-ScanWAN.release.xcconfig"; sourceTree = "<group>"; };
+		826B22DD608866CB15B94968 /* Pods-ScanWAN-ScanWANTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-ScanWANTests.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN-ScanWANTests/Pods-ScanWAN-ScanWANTests.release.xcconfig"; sourceTree = "<group>"; };
+		8D3ACCD071A1B2B5CCFE91F0 /* Pods-ScanWAN-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOSTests/Pods-ScanWAN-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		962F9775DA471693A69DCF8C /* libPods-ScanWAN-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A341B810A2888B65DCCCE899 /* Pods-ScanWAN-ScanWANTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-ScanWANTests.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN-ScanWANTests/Pods-ScanWAN-ScanWANTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B9F8DBE006B55387B8B8367F /* Pods-ScanWAN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN/Pods-ScanWAN.release.xcconfig"; sourceTree = "<group>"; };
+		D5C73BD6B41DE9A214B49C81 /* libPods-ScanWAN-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScanWAN-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2A5A6E7B2187634D0DB20B3 /* Pods-ScanWAN-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOS/Pods-ScanWAN-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F343A33304ABFA135F99EDBC /* Pods-ScanWAN-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN-tvOS/Pods-ScanWAN-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		F4841D72BD5BF53B084F55EF /* Pods-ScanWAN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanWAN.debug.xcconfig"; path = "Target Support Files/Pods-ScanWAN/Pods-ScanWAN.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A47B1073C63AE21156FB089 /* libPods-ScanWAN-ScanWANTests.a in Frameworks */,
+				976C862153FA9DE96F2E0207 /* libPods-ScanWAN-ScanWANTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9BBBD75AA8FCAAD34A3C551 /* libPods-ScanWAN.a in Frameworks */,
+				4C2A733EF9A3D8BB7E6A6B85 /* libPods-ScanWAN.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422598E2E990753669523753 /* libPods-ScanWAN-tvOS.a in Frameworks */,
+				F4B9B82297588B4E82273C24 /* libPods-ScanWAN-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				720EA72199868070DF7EB25F /* libPods-ScanWAN-tvOSTests.a in Frameworks */,
+				E4B1D75405CF954764E071F5 /* libPods-ScanWAN-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,27 +142,26 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				1165AAAAE79C3BDC7630AC7A /* libPods-ScanWAN.a */,
-				96690EE4494022D6CBB6B6CD /* libPods-ScanWAN-ScanWANTests.a */,
-				9E7D5CFF7E23E6174EC18ECB /* libPods-ScanWAN-tvOS.a */,
-				4A9BCBDA54DC3F4FC2580C67 /* libPods-ScanWAN-tvOSTests.a */,
+				01969C22AE63B9DCFD87EA74 /* libPods-ScanWAN.a */,
+				32AD290A5EA08A6961515AD1 /* libPods-ScanWAN-ScanWANTests.a */,
+				962F9775DA471693A69DCF8C /* libPods-ScanWAN-tvOS.a */,
+				D5C73BD6B41DE9A214B49C81 /* libPods-ScanWAN-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		665695B6D147EA0BBB1283D6 /* Pods */ = {
+		8021822070DD5A1119AE7940 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3E77E773F2E7496AE317B30D /* Pods-ScanWAN.debug.xcconfig */,
-				B44E337B47E01E1332601A62 /* Pods-ScanWAN.release.xcconfig */,
-				149C4293D8CE8CD3FE9C7BC6 /* Pods-ScanWAN-ScanWANTests.debug.xcconfig */,
-				9D87C17C0F48E213C2EE1ECD /* Pods-ScanWAN-ScanWANTests.release.xcconfig */,
-				F343A33304ABFA135F99EDBC /* Pods-ScanWAN-tvOS.debug.xcconfig */,
-				4ADCB900C4C5A5FF77B4F936 /* Pods-ScanWAN-tvOS.release.xcconfig */,
-				91760DC0685482B00DFB9CB8 /* Pods-ScanWAN-tvOSTests.debug.xcconfig */,
-				0755CDA5511DFBE2A628E2F1 /* Pods-ScanWAN-tvOSTests.release.xcconfig */,
+				F4841D72BD5BF53B084F55EF /* Pods-ScanWAN.debug.xcconfig */,
+				B9F8DBE006B55387B8B8367F /* Pods-ScanWAN.release.xcconfig */,
+				A341B810A2888B65DCCCE899 /* Pods-ScanWAN-ScanWANTests.debug.xcconfig */,
+				826B22DD608866CB15B94968 /* Pods-ScanWAN-ScanWANTests.release.xcconfig */,
+				61C42D82F5880A2C296980CE /* Pods-ScanWAN-tvOS.debug.xcconfig */,
+				E2A5A6E7B2187634D0DB20B3 /* Pods-ScanWAN-tvOS.release.xcconfig */,
+				0038FCE7F574A66A2B3297DD /* Pods-ScanWAN-tvOSTests.debug.xcconfig */,
+				8D3ACCD071A1B2B5CCFE91F0 /* Pods-ScanWAN-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -180,7 +180,7 @@
 				00E356EF1AD99517003FC87E /* ScanWANTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				665695B6D147EA0BBB1283D6 /* Pods */,
+				8021822070DD5A1119AE7940 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -205,11 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ScanWANTests" */;
 			buildPhases = (
-				73208CB9586BA361EB7EE42E /* [CP] Check Pods Manifest.lock */,
+				27BAA973C3B9CA762A172046 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				34693167FD2A0E3F4A6D975C /* [CP] Copy Pods Resources */,
+				1EFDBCA1503CDF4608D83A91 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,13 +225,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ScanWAN" */;
 			buildPhases = (
-				D069572AEFC6820D5C2EE6EC /* [CP] Check Pods Manifest.lock */,
+				44567FE354427F6CD42A3D14 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				7C660AB7164CEA3BC81582B3 /* [CP] Copy Pods Resources */,
+				8E679FB9BFAECD9BCCBE37B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,7 +246,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ScanWAN-tvOS" */;
 			buildPhases = (
-				83280CA4A7EEC85BF5030981 /* [CP] Check Pods Manifest.lock */,
+				4D282AE47E26C9AB4A2ACC33 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -266,7 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ScanWAN-tvOSTests" */;
 			buildPhases = (
-				89E1F430778F0E589E878C31 /* [CP] Check Pods Manifest.lock */,
+				3C9C7BF44096C06F235A4D07 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -340,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648EB09A25F66BC1009B78C4 /* main.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -375,23 +376,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		34693167FD2A0E3F4A6D975C /* [CP] Copy Pods Resources */ = {
+		1EFDBCA1503CDF4608D83A91 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -409,7 +396,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScanWAN-ScanWANTests/Pods-ScanWAN-ScanWANTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		73208CB9586BA361EB7EE42E /* [CP] Check Pods Manifest.lock */ = {
+		27BAA973C3B9CA762A172046 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,47 +418,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7C660AB7164CEA3BC81582B3 /* [CP] Copy Pods Resources */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScanWAN/Pods-ScanWAN-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "Bundle React Native Code And Images";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScanWAN/Pods-ScanWAN-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		83280CA4A7EEC85BF5030981 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScanWAN-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		89E1F430778F0E589E878C31 /* [CP] Check Pods Manifest.lock */ = {
+		3C9C7BF44096C06F235A4D07 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,7 +454,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D069572AEFC6820D5C2EE6EC /* [CP] Check Pods Manifest.lock */ = {
+		44567FE354427F6CD42A3D14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,6 +474,46 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D282AE47E26C9AB4A2ACC33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ScanWAN-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E679FB9BFAECD9BCCBE37B1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ScanWAN/Pods-ScanWAN-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScanWAN/Pods-ScanWAN-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -608,7 +609,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 149C4293D8CE8CD3FE9C7BC6 /* Pods-ScanWAN-ScanWANTests.debug.xcconfig */;
+			baseConfigurationReference = A341B810A2888B65DCCCE899 /* Pods-ScanWAN-ScanWANTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -631,7 +632,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D87C17C0F48E213C2EE1ECD /* Pods-ScanWAN-ScanWANTests.release.xcconfig */;
+			baseConfigurationReference = 826B22DD608866CB15B94968 /* Pods-ScanWAN-ScanWANTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -651,7 +652,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E77E773F2E7496AE317B30D /* Pods-ScanWAN.debug.xcconfig */;
+			baseConfigurationReference = F4841D72BD5BF53B084F55EF /* Pods-ScanWAN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -674,7 +675,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B44E337B47E01E1332601A62 /* Pods-ScanWAN.release.xcconfig */;
+			baseConfigurationReference = B9F8DBE006B55387B8B8367F /* Pods-ScanWAN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -695,7 +696,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F343A33304ABFA135F99EDBC /* Pods-ScanWAN-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 61C42D82F5880A2C296980CE /* Pods-ScanWAN-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -723,7 +724,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4ADCB900C4C5A5FF77B4F936 /* Pods-ScanWAN-tvOS.release.xcconfig */;
+			baseConfigurationReference = E2A5A6E7B2187634D0DB20B3 /* Pods-ScanWAN-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -751,7 +752,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91760DC0685482B00DFB9CB8 /* Pods-ScanWAN-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 0038FCE7F574A66A2B3297DD /* Pods-ScanWAN-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -778,7 +779,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0755CDA5511DFBE2A628E2F1 /* Pods-ScanWAN-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 8D3ACCD071A1B2B5CCFE91F0 /* Pods-ScanWAN-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
