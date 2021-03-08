@@ -18,7 +18,9 @@
     "react-native-camera": "^3.42.2",
     "react-native-permissions": "^2.2.2",
     "react-native-qrcode-scanner": "^1.5.3",
-    "react-native-svg": "^9.13.6"
+    "react-native-svg": "^9.13.6",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",

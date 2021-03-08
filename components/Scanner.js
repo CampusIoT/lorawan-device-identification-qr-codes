@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import QRCodeScanner from 'react-native-qrcode-scanner'
 import { RNCamera } from 'react-native-camera'
 import { Text, Button } from '@ui-kitten/components'
@@ -11,7 +12,8 @@ class Scanner extends Component {
 
     onSuccess = elt => {
         //Navigate to form and update maybe state to initialise placeholder
-        console.log(elt.data)
+        this.props.dispatch({ type: 'ADD_NODE', value: elt.data })
+        console.log(this.props)
     }
 
     render() {
@@ -42,4 +44,16 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Scanner
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: (action) => { dispatch(action) }
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        scan: state.scan
+    }
+}
+
+export default connect(mapDispatchToProps)(Scanner)
