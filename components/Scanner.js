@@ -13,7 +13,6 @@ class Scanner extends Component {
     onSuccess = elt => {
         //Navigate to form and update maybe state to initialise placeholder
         this.props.dispatch({ type: 'ADD_NODE', value: elt.data })
-        console.log(this.props)
     }
 
     render() {
@@ -51,9 +50,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        scan: state.scan
-    }
+    return 
 }
 
-export default connect(mapDispatchToProps)(Scanner)
+export default connect(mapStateToProps, mapDispatchToProps)(Scanner)

@@ -31,7 +31,6 @@ function HomePage(props) {
 
     const _goBack = () => {
         setScan(false)
-        _mainDisplay()
     }
 
     const _scan = () => {
