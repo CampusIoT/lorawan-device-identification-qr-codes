@@ -6,14 +6,16 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, StatusBar } from 'react-native'
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
-import HomePage from './components/HomePage';
+import HomePage from './components/HomePage'
 import { Provider } from 'react-redux'
 import Store from './store/configureStore'
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native'
 
 const App = () => {
 
@@ -22,8 +24,10 @@ const App = () => {
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <Provider store={Store}>
-          <StatusBar />
-          <HomePage />
+          <NavigationContainer>
+            <StatusBar />
+            <HomePage />
+          </NavigationContainer>
         </Provider>
       </ApplicationProvider>
     </>
