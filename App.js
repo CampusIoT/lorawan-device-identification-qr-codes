@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import { StyleSheet, StatusBar } from 'react-native'
+import { StyleSheet, StatusBar, SafeAreaView } from 'react-native'
 import { ApplicationProvider, IconRegistry, Button } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
@@ -17,7 +17,7 @@ const App = () => {
 
   const testC = async () => {
     const n = await getNumberOfApp('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNTI5NzI0NSwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTUyMTA4NDUsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.r7VSE4co79CB2yQy2quK0UfDvEsiHJWui5jjX4W3Vo0')
-    console.log(n)
+    alert(n);
   }
 
   return (
@@ -25,9 +25,11 @@ const App = () => {
       <IconRegistry icons={EvaIconsPack}/>
         <ApplicationProvider {...eva} theme={eva.light}>
           <StatusBar />
-          <Button onPress={testC}>
-            Test API
-          </Button>
+          <SafeAreaView>
+            <Button onPress={testC}>
+              Test API
+            </Button>
+          </SafeAreaView>
         </ApplicationProvider>
     </>
   )
