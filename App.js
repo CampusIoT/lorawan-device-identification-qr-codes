@@ -11,7 +11,9 @@ import { StyleSheet, StatusBar, SafeAreaView } from 'react-native'
 import { ApplicationProvider, IconRegistry, Button } from '@ui-kitten/components'
 import * as eva from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
-import { getToken, getNumberOfApp, getAppList } from './api/Chirpstack';
+import HomePage from './components/HomePage';
+import { Provider } from 'react-redux'
+import Store from './store/configureStore'
 
 const App = () => {
 
@@ -22,15 +24,13 @@ const App = () => {
 
   return (
     <>
-      <IconRegistry icons={EvaIconsPack}/>
-        <ApplicationProvider {...eva} theme={eva.light}>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <Provider store={Store}>
           <StatusBar />
-          <SafeAreaView>
-            <Button onPress={testC}>
-              Test API
-            </Button>
-          </SafeAreaView>
-        </ApplicationProvider>
+          <HomePage />
+        </Provider>
+      </ApplicationProvider>
     </>
   )
 }
