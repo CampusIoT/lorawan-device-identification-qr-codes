@@ -16,6 +16,7 @@ import { Provider } from 'react-redux'
 import Store from './store/configureStore'
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
+import Navigation from './navigation/Navigation'
 
 const App = () => {
 
@@ -26,7 +27,7 @@ const App = () => {
         <Provider store={Store}>
           <NavigationContainer>
             <StatusBar />
-            <HomePage />
+            <Navigation />
           </NavigationContainer>
         </Provider>
       </ApplicationProvider>
