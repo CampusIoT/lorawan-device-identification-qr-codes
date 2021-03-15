@@ -7,18 +7,29 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.3",
     "@ui-kitten/components": "^5.0.0",
     "@ui-kitten/eva-icons": "^5.0.0",
     "react": "16.13.1",
+    "react-hook-form": "^6.15.4",
     "react-native": "0.63.4",
     "react-native-camera": "^3.42.2",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-permissions": "^2.2.2",
     "react-native-qrcode-scanner": "^1.5.3",
-    "react-native-svg": "^9.13.6"
+    "react-native-reanimated": "^2.0.0",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^2.18.1",
+    "react-native-svg": "^9.13.6",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",

@@ -10,11 +10,16 @@ export async function getToken(id, pwd) {
     })
         .then(response => response.json())
         .then(result => {
+            if (result.code === 16) {
+                alert("Username or password are not valid.\nPlease, try again.")
+                return -1
+            }
             return result.jwt
-        },
-            (error) => {
-                return error
-            })
+        })
+        .catch(error => {
+            alert("Sorry, an issue occured :\n" + error)
+            console.log("error", error)
+        })
 
     return token
 
@@ -32,17 +37,22 @@ export async function getNumberOfApp(token) {
     })
         .then(response => response.json())
         .then(result => {
+            if (result.code === 16) {
+                alert("Session expired.\nPlease, log in.")
+                return -1
+            }
             return result.totalCount
-        },
-            (error) => {
-                return error
-            })
+        })
+        .catch(error => {
+            alert("Sorry, an issue occured :\n" + error)
+            console.log("error", error)
+        })
     return apps
 }
 
 export async function getAppList(token) {
     const url = 'https://lns.campusiot.imag.fr/api/applications'
-    const limit = await getNumberOfApp(token).then(data => data)
+    const limit = await getNumberOfApp(token)
 
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')
@@ -53,31 +63,99 @@ export async function getAppList(token) {
     const appList = await fetch(url + "?" + param, {
         method: "GET",
         headers: headers
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(result => {
+            if (result.code === 16) {
+                alert("Session expired.\nPlease, log in.")
+                return -1
+            }
             return result
-        }, (error) => {
-            return error
+        })
+        .catch(error => {
+            alert("Sorry, an issue occured :\n" + error)
+            console.log("error", error)
         })
 
     return appList
 }
 
-export function addDevice(token, device, key) {
+export async function getNumberOfProfile(token) {
+    const url = 'https://lns.campusiot.imag.fr/api/device-profiles'
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append('Accept', 'application/json')
+    headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
+
+    const profileNumber = await fetch(url, {
+        method: "GET",
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(result => {
+            if (result.code === 16) {
+                alert("Session expired.\nPlease, log in.")
+                return -1
+            }
+            return result.totalCount
+        })
+        .catch(error => {
+            alert("Sorry, an issue occured :\n" + error)
+            console.log("error", error)
+        })
+
+    return profileNumber
+}
+export async function getProfile(token) {
+    const url = 'https://lns.campusiot.imag.fr/api/device-profiles'
+    const limit = await getNumberOfProfile(token)
+
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append('Accept', 'application/json')
+    headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
+    const param = "limit=" + limit
+
+    const profileList = await fetch(url + "?" + param, {
+        method: "GET",
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(result => {
+            if (result.code === 16) {
+                alert("Session expired.\nPlease, log in.")
+                return -1
+            }
+            return result
+        })
+        .catch(error => {
+            alert("Sorry, an issue occured :\n" + error)
+            console.log("error", error)
+        })
+
+    return profileList
+}
+
+export async function addDevice(token, device, key) {
     const url = 'https://lns.campusiot.imag.fr/api/devices'
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')
     headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
     const content = JSON.stringify(device)
 
-    fetch(url, {
+    const res = await fetch(url, {
         method: "POST",
         headers: headers,
         body: content
-    }).then(response => response.json())
+    })
+        .then(response => response.json())
         .then(result => {
             return result
-        }, error => {
-            return error
         })
+        .catch(error => {
+            alert("Sorry, an issue occured :\n" + error)
+            console.log("error", error)
+        })
+
+    return res
 }

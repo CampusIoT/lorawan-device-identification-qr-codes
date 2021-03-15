@@ -10,11 +10,9 @@ target 'ScanWAN' do
 
   permissions_path = '../node_modules/react-native-permissions/ios'
 
-  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-Camera', :path => "#{permissions_path}"
 
-  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
-  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
   target 'ScanWANTests' do
     inherit! :complete
@@ -25,7 +23,7 @@ target 'ScanWAN' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
-  use_flipper!
+  use_flipper!({'Flipper-Folly' => '2.3.0'})
   post_install do |installer|
     flipper_post_install(installer)
   end
