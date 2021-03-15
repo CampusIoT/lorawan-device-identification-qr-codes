@@ -14,7 +14,8 @@ class ApplicationSelection extends React.Component {
             <SafeAreaView>
                 <FlatList
                     data={this.applications}
-                    renderItem = {({item}) => <ApplicationItem application={item} /> }
+                    renderItem = {({item}) => <ApplicationItem application={item}
+                    keyExtracotr={item => item.id} /> }
                 />
             </SafeAreaView>
         )
@@ -36,7 +37,8 @@ const _getApplications = async() => {
 }
 
 const mapStateToProps = (state) => {
-    return {selectedNetwork: state.selectedNetwork}
+    return {selectedNetwork: state.selectedNetwork,
+            jwt_Chirpstack: state.jwt_Chirpstack}
 }
 
 const styles = StyleSheet.create({

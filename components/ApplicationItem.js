@@ -6,13 +6,15 @@ class ApplicationItem extends React.Component {
         const application = this.props.application
         return (
             <View style={styles.main_container}>
-                <View styles={styles.title_container}>
-                    <Text>{application.name}</Text>
-                </View>
-                <View styles={styles.details_container}>
-                    <Text>{application.description}</Text>
-                    <Text>{application.id}</Text>
-                </View>
+                <TouchableHighlight onPress={console.log('Malone take of care this')}>
+                    <View styles={styles.title_container}>
+                        <Text>{application.name}</Text>
+                    </View>
+                    <View styles={styles.details_container}>
+                        <Text>{application.description}</Text>
+                        <Text>{application.id}</Text>
+                    </View>
+                </TouchableHighlight>
             </View>
         )
     }

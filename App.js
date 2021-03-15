@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useState } from 'react';
 import { StyleSheet, StatusBar, SafeAreaView } from 'react-native'
 import { ApplicationProvider, IconRegistry, Button } from '@ui-kitten/components'
@@ -17,6 +9,7 @@ import Store from './store/configureStore'
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import Navigation from './navigation/Navigation'
+import NetworkSelection from './components/NetworkSelection';
 
 const App = () => {
 
