@@ -17,12 +17,15 @@ const arrowBackIcon = (props) => (
 
 
 class NodeRegisterPage extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
     _display_form() {
         //     const api = state.api
         //     if (api === 'chirpstack'){
         return (
-            <ChirpstackForm></ChirpstackForm>
+            <ChirpstackForm navigation={this.props.navigation}></ChirpstackForm>
         );
         //     }
         //     else if (api === 'TTN'){

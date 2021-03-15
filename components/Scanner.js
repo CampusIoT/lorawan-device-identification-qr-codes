@@ -10,9 +10,16 @@ class Scanner extends Component {
         super(props)
     }
 
-    onSuccess = elt => {
+    _onSuccess = elt => {
         //Navigate to form and update maybe state to initialise placeholder
         this.props.dispatch({ type: 'ADD_NODE', value: elt.data })
+        this.props.navigation.navigate('Forms')
+        this.props.scanned()
+    }
+
+    _goBack = () => {
+        this.props.scanned()
+        this.props.navigation.navigate('Home')
     }
 
     render() {
@@ -21,7 +28,7 @@ class Scanner extends Component {
                 <QRCodeScanner
                     reactivate={true}
                     reactivateTimeout={2500}
-                    onRead={this.onSuccess}
+                    onRead={this._onSuccess}
                     flasMode={RNCamera.Constants.FlashMode.auto}
                     topContent={
                         <Text style={styles.textBold} >
@@ -29,7 +36,7 @@ class Scanner extends Component {
                         </Text >
                     }
                     bottomContent={
-                        <Button onPress={this.props.goBack}> Retour </Button>
+                        <Button onPress={this._goBack}> Retour </Button>
                     }
                 />
             </View>
@@ -50,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    return 
+    return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scanner)

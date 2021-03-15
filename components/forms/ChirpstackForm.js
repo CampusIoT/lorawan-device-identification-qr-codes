@@ -2,15 +2,19 @@ import React from "react";
 import { ScrollView, View, TextInput, Alert, StyleSheet } from "react-native";
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
+import { connect } from 'react-redux'
 
 const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />
 );
 
-export default function ChirpstackForm() {
+function ChirpstackForm(props) {
     const { control, handleSubmit, errors } = useForm();
 
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        // TODO: Use chirpstack call to add the device and don't forget to handle errors.
+        props.navigation.popToTop()
+    }
 
     return (
         <ScrollView style={styles.main_view}>
@@ -21,7 +25,7 @@ export default function ChirpstackForm() {
                         control={control}
                         render={({ onChange, onBlur, value }) => (
                             <>
-                                <Text category="p1">device name</Text>
+                                <Text category="p1">Device name</Text>
                                 <Input
                                     style={styles.input}
                                     onBlur={onBlur}
@@ -38,7 +42,7 @@ export default function ChirpstackForm() {
                         control={control}
                         render={({ onChange, onBlur, value }) => (
                             <>
-                                <Text category="p1">applicationID</Text>
+                                <Text category="p1">ApplicationID</Text>
                                 <Input
                                     style={styles.input}
                                     onBlur={onBlur}
@@ -56,7 +60,7 @@ export default function ChirpstackForm() {
                         control={control}
                         render={({ onChange, onBlur, value }) => (
                             <>
-                                <Text category="p1">description</Text>
+                                <Text category="p1">Description</Text>
                                 <Input
                                     style={styles.input}
                                     onBlur={onBlur}
@@ -73,24 +77,26 @@ export default function ChirpstackForm() {
                         control={control}
                         render={({ onChange, onBlur, value }) => (
                             <>
-                                <Text category="p1">devEUI</Text>
+                                <Text category="p1">DevEUI</Text>
                                 <Input
                                     style={styles.input}
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
+                                    disabled={true}
                                 />
                             </>
                         )}
                         name="devEUI"
-                        defaultValue=""
+                        defaultValue={props.device.devEUI}
                     />
 
+                    {/* TODO: Add a choice list with chirpstack API call in order to get the Device Profile ID */}
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
                             <>
-                                <Text category="p1">deviceProfileID</Text>
+                                <Text category="p1">Device ProfileID</Text>
                                 <Input
                                     style={styles.input}
                                     onBlur={onBlur}
@@ -113,11 +119,12 @@ export default function ChirpstackForm() {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
+                                    disabled={true}
                                 />
                             </>
                         )}
                         name="AppEUI"
-                        defaultValue=""
+                        defaultValue={props.device.appEUI}
                     />
 
                 </View>
@@ -134,7 +141,7 @@ export default function ChirpstackForm() {
 
         </ScrollView >
 
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -164,3 +171,10 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = (state) => {
+    return {
+        device: state.device
+    }
+}
+
+export default connect(mapStateToProps)(ChirpstackForm)

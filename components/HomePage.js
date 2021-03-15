@@ -29,13 +29,13 @@ function HomePage(props) {
         )
     }
 
-    const _goBack = () => {
+    const _scanned = () => {
         setScan(false)
     }
 
     const _scan = () => {
         return (
-            <Scanner goBack={_goBack} />
+            <Scanner scanned={_scanned}navigation={props.navigation} />
         )
     }
 
