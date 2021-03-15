@@ -18,7 +18,7 @@ function HomePage(props) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.button_view}>
-                    <Button style={styles.button}>
+                    <Button style={styles.button} onPress={() => this.props.navigation.navigate("NetworkSelection")}>
                         Select a network
                     </Button>
                     <Button style={styles.button} disabled={true}>
