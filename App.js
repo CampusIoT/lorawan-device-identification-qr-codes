@@ -14,6 +14,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons'
 import HomePage from './components/HomePage';
 import { Provider } from 'react-redux'
 import Store from './store/configureStore'
+import NetworkSelection from './components/NetworkSelection';
 
 const App = () => {
 
@@ -27,8 +28,8 @@ const App = () => {
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <Provider store={Store}>
-          <StatusBar />
-          <HomePage />
+          <StatusBar/>
+          <NetworkSelection/>
         </Provider>
       </ApplicationProvider>
     </>
