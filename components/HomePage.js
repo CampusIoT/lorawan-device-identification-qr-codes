@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Button } from '@ui-kitten/components'
 import Scanner from './Scanner';
+import { getAppList } from '../api/ttn';
 
 
 function HomePage(props) {
@@ -18,7 +19,7 @@ function HomePage(props) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.button_view}>
-                    <Button style={styles.button}>
+                    <Button style={styles.button} onPress={getAppList}>
                         Select a network
                     </Button>
                     <Button style={styles.button} disabled={true}>
