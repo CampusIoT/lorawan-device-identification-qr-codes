@@ -136,12 +136,12 @@ export async function getProfile(token) {
     return profileList
 }
 
-export async function addDevice(token, device, key) {
+export async function addDevice(deviceContent, token) {
     const url = 'https://lns.campusiot.imag.fr/api/devices'
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')
     headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
-    const content = JSON.stringify(device)
+    const content = JSON.stringify({ device: { ...deviceContent } })
 
     const res = await fetch(url, {
         method: "POST",
