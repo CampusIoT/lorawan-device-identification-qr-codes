@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Button } from '@ui-kitten/components'
 import Scanner from './Scanner';
-
+import { DeviceEventEmitter } from 'react-native'
 
 function HomePage(props) {
 
+
     const [isScan, setScan] = useState(false)
+
+    DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
 
     const _mainDisplay = () => {
         return (
@@ -29,13 +32,9 @@ function HomePage(props) {
         )
     }
 
-    const _scanned = () => {
-        setScan(false)
-    }
-
     const _scan = () => {
         return (
-            <Scanner scanned={_scanned}navigation={props.navigation} />
+            <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
 

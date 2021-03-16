@@ -1,8 +1,9 @@
-import React from "react";
-import { ScrollView, View, TextInput, Alert, StyleSheet } from "react-native";
-import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
+import React, { useState } from "react";
+import { ScrollView, View, StyleSheet, DeviceEventEmitter } from "react-native";
+import { Text, Icon, Card, Button, Input, SelectItem, Select, IndexPath } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
+import { addDevice } from "../../api/Chirpstack";
 
 const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />
@@ -10,15 +11,41 @@ const checkIcon = (props) => (
 
 function ChirpstackForm(props) {
     const { control, handleSubmit, errors } = useForm();
+    const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0))
 
-    const onSubmit = data => {
-        // TODO: Use chirpstack call to add the device and don't forget to handle errors.
-        props.navigation.popToTop()
+    const onSubmit = async data => {
+        const rexp = new RegExp('-', 'g')
+        const pid = props.profiles[selectedIndex.row].id.replace(rexp, "")
+        data = {
+            ...data,
+            deviceProfileID: pid
+        }
+        const res = await addDevice(data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNTk5Mjg1NywiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTU5MDY0NTcsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.Kt0U1vJpjT02MRIGdt5o_kRkofEWKQ---x8wXC91UmI")//add token value from redux)
+
+        if (Object.keys(res).length === 0) {
+            alert("The device has correctly been added")
+
+        } else {
+            alert("An error occured, please try again.")
+        }
+        DeviceEventEmitter.emit("event.setScan")
+        DeviceEventEmitter.removeAllListeners();
+        props.navigation.navigate('Home')
+    }
+
+    const setDefault = name => {
+        switch (name) {
+            case 'name':
+                return "device-" + props.device.devEUI.substring(0, 8)
+            case 'description':
+                return 'A new device'
+            default:
+                alert("PANIC! => set default value in chirpstack form")
+        }
     }
 
     return (
         <ScrollView style={styles.main_view}>
-
             <Card style={styles.card} status='primary' disabled={true}>
                 <View style={styles.view_form}>
                     <Controller
@@ -35,7 +62,7 @@ function ChirpstackForm(props) {
                             </>
                         )}
                         name="name"
-                        defaultValue=""
+                        defaultValue={setDefault('name')}
                     />
 
                     <Controller
@@ -52,7 +79,6 @@ function ChirpstackForm(props) {
                             </>
                         )}
                         name="applicationID"
-                        rules={{ required: true }}
                         defaultValue=""
                     />
 
@@ -70,7 +96,7 @@ function ChirpstackForm(props) {
                             </>
                         )}
                         name="description"
-                        defaultValue=""
+                        defaultValue={setDefault('description')}
                     />
 
                     <Controller
@@ -91,23 +117,13 @@ function ChirpstackForm(props) {
                         defaultValue={props.device.devEUI}
                     />
 
-                    {/* TODO: Add a choice list with chirpstack API call in order to get the Device Profile ID */}
-                    <Controller
-                        control={control}
-                        render={({ onChange, onBlur, value }) => (
-                            <>
-                                <Text category="p1">Device ProfileID</Text>
-                                <Input
-                                    style={styles.input}
-                                    onBlur={onBlur}
-                                    onChangeText={value => onChange(value)}
-                                    value={value}
-                                />
-                            </>
-                        )}
-                        name="deviceProfileID"
-                        defaultValue=""
-                    />
+                    {<Text category="p1">Profile ID</Text>}
+                    {console.log(props.profiles)}
+                    {
+                        <Select selectedIndex={selectedIndex} onSelect={index => setSelectedIndex(index)} value={props.profiles[selectedIndex.row].name}>
+                            {props.profiles.map(elt => <SelectItem key={selectedIndex.row} title={elt.name} />)}
+                        </Select>
+                    }
 
                     <Controller
                         control={control}
@@ -123,7 +139,7 @@ function ChirpstackForm(props) {
                                 />
                             </>
                         )}
-                        name="AppEUI"
+                        name="appEUI"
                         defaultValue={props.device.appEUI}
                     />
 

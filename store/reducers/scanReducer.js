@@ -15,10 +15,18 @@ function parseQRData(data) {
     if (words.length > 5) {
         device = {
             ...device,
-            ownerToken: words.find((elt) => elt.startsWith('O')).substring(1),
-            serNum: words.find((elt) => elt.startsWith('S')).substring(1),
-            proprietary: words.find((elt) => elt.startsWith('P')).substring(1),
-            checksum: words.find((elt) => elt.startsWith('C')).substring(1),
+            ownerToken: words.find((elt) => {
+                elt.startsWith('O') ? elt.startsWith('O').substring(1) : null
+            }),
+            serNum: words.find((elt) => {
+                elt.startsWith('S') ? elt.startsWith('S').substring(1) : null
+            }),
+            proprietary: words.find((elt) => {
+                elt.startsWith('P') ? elt.startsWith('P').substring(1) : null
+            }),
+            checksum: words.find((elt) => {
+                elt.startsWith('C') ? elt.startsWith('C').substring(1) : null
+            }),
         }
     }
     return device
@@ -31,6 +39,18 @@ export function scanReducer(state = initialState, action) {
             nextState = {
                 ...state,
                 device: parseQRData(action.value)
+            }
+            return nextState || state
+        case 'CHOOSE_NETWORK':
+            nextState = {
+                ...state,
+                selectedNetwork: action.value
+            }
+            return nextState || state
+        case 'CHOOSE_APP':
+            nextState = {
+                ...state,
+                selectedApp: action.value
             }
             return nextState || state
         default:
