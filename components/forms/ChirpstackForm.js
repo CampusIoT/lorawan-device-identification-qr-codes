@@ -10,8 +10,9 @@ const checkIcon = (props) => (
 );
 
 function ChirpstackForm(props) {
-    const { control, handleSubmit, errors } = useForm();
+    const { control, handleSubmit, errors } = useForm({mode: 'onChange' });
     const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0))
+    const name_reg = /^([a-zA-Z0-9-]*)$/
 
     const onSubmit = async data => {
         const rexp = new RegExp('-', 'g')
@@ -20,16 +21,19 @@ function ChirpstackForm(props) {
             ...data,
             deviceProfileID: pid
         }
-        const res = await addDevice(data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNTk5Mjg1NywiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTU5MDY0NTcsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.Kt0U1vJpjT02MRIGdt5o_kRkofEWKQ---x8wXC91UmI")//add token value from redux)
+        const res = await addDevice(data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjUwNTExMiwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY0MTg3MTIsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.R0B8_FLla3Mlyeks40Awzx6qYcLVVBwRX-iaYAVmysg")//add token value from redux)
 
         if (Object.keys(res).length === 0) {
             alert("The device has correctly been added")
 
         } else {
-            alert("An error occured, please try again.")
+            if (res.code === 6)
+                alert("An error occured, please try again.\nThe device already exist.")
+            else
+                alert("Sorry, an error occured. Please, try again.")
         }
         DeviceEventEmitter.emit("event.setScan")
-        DeviceEventEmitter.removeAllListeners();
+        DeviceEventEmitter.removeAllListeners()
         props.navigation.navigate('Home')
     }
 
@@ -61,27 +65,11 @@ function ChirpstackForm(props) {
                                 />
                             </>
                         )}
+                        rules={{ pattern: name_reg, required: true }}
                         name="name"
                         defaultValue={setDefault('name')}
                     />
-
-                    <Controller
-                        control={control}
-                        render={({ onChange, onBlur, value }) => (
-                            <>
-                                <Text category="p1">ApplicationID</Text>
-                                <Input
-                                    style={styles.input}
-                                    onBlur={onBlur}
-                                    onChangeText={value => onChange(value)}
-                                    value={value}
-                                />
-                            </>
-                        )}
-                        name="applicationID"
-                        defaultValue=""
-                    />
-
+                    {errors.name && <Card status='danger'><Text>The name has to contain words, dashes and number ! </Text></Card>}
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
@@ -118,7 +106,6 @@ function ChirpstackForm(props) {
                     />
 
                     {<Text category="p1">Profile ID</Text>}
-                    {console.log(props.profiles)}
                     {
                         <Select selectedIndex={selectedIndex} onSelect={index => setSelectedIndex(index)} value={props.profiles[selectedIndex.row].name}>
                             {props.profiles.map(elt => <SelectItem key={selectedIndex.row} title={elt.name} />)}

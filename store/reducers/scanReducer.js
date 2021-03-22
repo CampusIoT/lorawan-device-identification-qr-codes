@@ -5,7 +5,8 @@ const initialState = {
 }
 
 function parseQRData(data) {
-    const words = data.split(':')
+    let words = data.split(':')
+
     let device = {
         appEUI: words[2],
         devEUI: words[3],
@@ -13,22 +14,37 @@ function parseQRData(data) {
     }
 
     if (words.length > 5) {
+        let ownerToken, serNum, proprietary, checksum
+        words = words.slice(5)
+        ownerToken = words.find(elt => elt.startsWith('O'))
+
+        if (ownerToken !== undefined)
+            ownerToken = ownerToken.substring(1)
+
+        serNum = words.find(elt => elt.startsWith('S'))
+
+        if (serNum !== undefined)
+            serNum = serNum.substring(1)
+
+        proprietary = words.find(elt => elt.startsWith('P'))
+
+        if (proprietary !== undefined)
+            proprietary = proprietary.substring(1)
+
+        checksum = words.find(elt => elt.startsWith('C'))
+
+        if (checksum !== undefined)
+            checksum = checksum.substring(1)
+            
         device = {
             ...device,
-            ownerToken: words.find((elt) => {
-                elt.startsWith('O') ? elt.startsWith('O').substring(1) : null
-            }),
-            serNum: words.find((elt) => {
-                elt.startsWith('S') ? elt.startsWith('S').substring(1) : null
-            }),
-            proprietary: words.find((elt) => {
-                elt.startsWith('P') ? elt.startsWith('P').substring(1) : null
-            }),
-            checksum: words.find((elt) => {
-                elt.startsWith('C') ? elt.startsWith('C').substring(1) : null
-            }),
+            ownerToken: ownerToken,
+            serNum: serNum,
+            proprietary: proprietary,
+            checksum: checksum
         }
     }
+    
     return device
 }
 
