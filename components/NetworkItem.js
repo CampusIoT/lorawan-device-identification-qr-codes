@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native'
-
 class NetworkItem extends React.Component {
     constructor(props){
         super(props)
@@ -12,7 +11,7 @@ class NetworkItem extends React.Component {
             <TouchableHighlight underlayColor='#BFBFBF' onPress={() => alert('Malone take of care this')}>
                 <View style={styles.main_container}>
                     <View style={styles.image_container}>
-                        <Image style={styles.image} source={require('../assets/logo_chirpstack.png')}/>
+                        <Image style={styles.image} source={network.image}/>
                     </View>
                     
                     <View style={{ borderRightWidth: 1, borderRightColor: 'grey', }} />

@@ -6,13 +6,13 @@ import NetworkItem from './NetworkItem'
 class NetworkSelection extends React.Component {
     constructor(props){
         super(props)
-        this.newtork = [{id: '1',
-                         name: 'Polytech\'Grenoble',
-                         image: '../assets/qrcode.png',
+        this.networks = [{id: '1',
+                         name: 'Chirpstack',
+                         image: require('../assets/logo_chirpstack.png'),
                          login: 'login@example.com'},
                         {id: '2',
-                         name: 'Laboratoire LIG',
-                         image: '../assets/qrcode.png',
+                         name: 'The Things Network',
+                         image: require('../assets/logo_ttn.png'),
                          login: 'login@example.com'},]
     }
 
@@ -24,13 +24,21 @@ class NetworkSelection extends React.Component {
                 <Text style={styles.instruction}> Select a network to register your node in</Text>
                 </View>
                 <FlatList
-                    data={this.newtork}
+                    data={this.networks}
                     renderItem = {({item}) => <NetworkItem network={item}
-                    keyExtracotr={item => item.id} /> }
+                    keyExtracotr={item => item.id}
+                    ItemSeparatorComponent={renderSeparator} />
+                }
                 />
             </SafeAreaView>
         )
     }
+}
+
+const renderSeparator = () => {
+    return (
+        <View style={{backgroundColor: 'black', height: 10}}/>
+    );
 }
 
 const _getNewtork = async() => {
