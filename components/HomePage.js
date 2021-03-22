@@ -21,7 +21,7 @@ function HomePage(props) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.button_view}>
-                    <Button style={styles.button}>
+                    <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
                         Select a network
                     </Button>
                     <Button style={styles.button} disabled={true}>
@@ -65,9 +65,8 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     text: {
-        marginTop: 10,
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 36
     },
     button_view: {
         flex: 1,

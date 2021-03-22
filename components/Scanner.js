@@ -61,7 +61,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return null
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scanner)
