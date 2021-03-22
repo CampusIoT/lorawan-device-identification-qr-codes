@@ -15,6 +15,7 @@ import { Provider } from 'react-redux'
 import Store from './store/configureStore'
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
+import HomePage from './components/HomePage'
 
 const App = () => {
 
