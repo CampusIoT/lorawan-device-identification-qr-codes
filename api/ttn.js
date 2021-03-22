@@ -26,17 +26,16 @@ export async function getAppList(APIKey){
 }
 // TODO: change default constant to real parametre from store
 // Pattern name for ttnform "^[a-z0-9](?:[-]?[a-z0-9]){2,}$\"
-export async function addDevice (contentDevice, APIKey){
+export async function addDevice (contentDevice, application, APIKey){
     //  Uncomment for test and change const name
     // const ContentDevice = { device_id : "firstdeviceonapp", application_ids: { applications_id: "test-app-tqt"}, dev_eui:"AABBCCDDEEFF0000", join_eui:"AABBCCDDEEFF0000", dev_addr: "BBAADDCC" }
-    
-    const application = ContentDevice.application_ids.applications_id
+    // console.log(contentDevice)
     const url = TTN_URL + '/applications/' + application + '/devices'
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')
     headers.append('Authorization', 'Bearer ' + APIKey)
-    const content = JSON.stringify({ end_device: { ids:{...contentDevice }} })
-    console.log(content)
+    const content = JSON.stringify(contentDevice)
+    // console.log(content)
 
     const res = await fetch(url, {
         method: "POST",
@@ -46,10 +45,11 @@ export async function addDevice (contentDevice, APIKey){
         .then(response => response.json())
         .then(result => {
             console.log(result)
-            if (result.code ===6) {
+            if (result.code === 6) {
                 alert("ID already taken.\nPlease, change.")
-                return -1
+                return result
             }
+            console.log(result.details.cause)
             return result
         })
         .catch(error => {

@@ -4,7 +4,7 @@ import {
     Button,
     Icon
 } from '@ui-kitten/components';
-import ChirpstackForm from './forms/ChirpstackForm';
+import TTNForm from './forms/TTNForm';
 
 
 const checkIcon = (props) => (
@@ -25,7 +25,7 @@ class NodeRegisterPage extends React.Component {
         //     const api = state.api
         //     if (api === 'chirpstack'){
         return (
-            <ChirpstackForm navigation={this.props.navigation}></ChirpstackForm>
+            <TTNForm navigation={this.props.navigation}></TTNForm>
         );
         //     }
         //     else if (api === 'TTN'){
