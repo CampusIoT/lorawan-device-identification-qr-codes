@@ -28,7 +28,7 @@ export default function MainNav() {
             <Stack.Screen
                 name='NetworkSelection'
                 component={NetworkSelection}
-                options={{ headerShown: false }}
+                options={{ headerShown: true, title: "", headerStyle: { backgroundColor: '#EFEFEF'} }}
             />
         </Stack.Navigator>
     )
