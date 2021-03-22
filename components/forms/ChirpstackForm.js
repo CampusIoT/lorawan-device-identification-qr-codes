@@ -23,15 +23,10 @@ function ChirpstackForm(props) {
         }
         const res = await addDevice(data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjUwNTExMiwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY0MTg3MTIsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.R0B8_FLla3Mlyeks40Awzx6qYcLVVBwRX-iaYAVmysg")//add token value from redux)
 
-        if (Object.keys(res).length === 0) {
+        if (res === 0) {
             alert("The device has correctly been added")
-
-        } else {
-            if (res.code === 6)
-                alert("An error occured, please try again.\nThe device already exist.")
-            else
-                alert("Sorry, an error occured. Please, try again.")
         }
+        
         DeviceEventEmitter.emit("event.setScan")
         DeviceEventEmitter.removeAllListeners()
         props.navigation.navigate('Home')
