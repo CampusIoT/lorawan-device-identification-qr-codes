@@ -13,8 +13,8 @@ function HomePage(props) {
     const [isSelectedA, getSelectedA] = useState(false)
 
     DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
-    DeviceEventEmitter.addListener("event.Selected", () => { getSelectedN(true) })
-    DeviceEventEmitter.addListener("event.Selected", () => { getSelectedN(true) })
+    DeviceEventEmitter.addListener("event.SelectedN", () => { getSelectedN(true), getSelectedA(false) })
+    DeviceEventEmitter.addListener("event.SelectedA", () => { getSelectedA(true) })
 
     const _mainDisplay = () => {
         return (
@@ -29,8 +29,8 @@ function HomePage(props) {
                     <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
                       { !isSelectedN ?  'Select a network' : props.selectedNetwork + ' is selected' }
                     </Button>
-                    <Button style={styles.button} disabled={!isSelectedN}>
-                        Select an application
+                    <Button style={styles.button} onPress= {() => props.navigation.navigate("ApplicationSelection")} disabled={!isSelectedN}>
+                    { !isSelectedA ?  'Select an application ' : props.selectedApp + ' is selected' }
                     </Button>
                 </View>
             </>
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "80%",
-        margin: 20
+        margin: 20,
+        textAlign: 'center'
     }
 
 
