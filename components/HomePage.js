@@ -13,7 +13,7 @@ function HomePage(props) {
     const [isSelectedA, getSelectedA] = useState(false)
 
     DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
-    DeviceEventEmitter.addListener("event.SelectedN", () => { getSelectedN(true), getSelectedA(false) })
+    DeviceEventEmitter.addListener("event.SelectedN", () => { getSelectedN(true), getSelectedA(false), props.selectedApp = '' })
     DeviceEventEmitter.addListener("event.SelectedA", () => { getSelectedA(true) })
 
     const _mainDisplay = () => {
