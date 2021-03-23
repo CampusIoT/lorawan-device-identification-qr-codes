@@ -13,22 +13,22 @@ class NetworkSelection extends React.Component {
                         {id: '2',
                          name: 'The Things Network',
                          image: require('../assets/logo_ttn.png'),
-                         login: 'login@example.com'},]
+                         login: 'login@example.com'},
+                        ]
     }
 
     render(){
         return (
             <SafeAreaView>
                 <View>
-                <Text style={styles.title}>Network Selection</Text>
-                <Text style={styles.instruction}> Select a network to register your node in</Text>
+                    <Text style={styles.title}>Network Selection</Text>
+                    <Text style={styles.instruction}> Select a network to register your node in</Text>
                 </View>
                 <FlatList
                     data={this.networks}
-                    renderItem = {({item}) => <NetworkItem network={item}
-                    keyExtracotr={item => item.id}
-                    ItemSeparatorComponent={renderSeparator} />
-                }
+                    renderItem = {(item) => <NetworkItem network={item.item} navigator={this.props.navigation}/>}
+                    keyExtractor={item => item.id}
+                    ItemSeparatorComponent={renderSeparator} 
                 />
             </SafeAreaView>
         )
@@ -37,25 +37,10 @@ class NetworkSelection extends React.Component {
 
 const renderSeparator = () => {
     return (
-        <View style={{backgroundColor: 'black', height: 10}}/>
+        <View style={{backgroundColor: 'black', height: 1, marginLeft: 10, marginRight: 10}}/>
     );
 }
 
-const _getNewtork = async() => {
-    let map = _buildFetcherMap()
-    let fetcher = map[selectedNetwork]
-    let newtork = await fetcher
-    return(newtork)   
-}
-
-const mapStateToProps = (state) => {
-    return state
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        dispatch: (action) => { dispatch(action) }
-    }
-}
 const styles = StyleSheet.create({
     title: {
         fontSize: 36,
@@ -71,4 +56,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NetworkSelection);
+export default NetworkSelection;

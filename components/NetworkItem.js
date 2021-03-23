@@ -1,14 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native'
+import { connect } from 'react-redux'
+import { DeviceEventEmitter } from 'react-native'
 class NetworkItem extends React.Component {
     constructor(props){
         super(props)
     }
 
+    selectNetwork(network){
+        this.props.dispatch({type: 'CHOOSE_NETWORK', value: network.name})
+        DeviceEventEmitter.emit("event.Selected")
+        DeviceEventEmitter.removeAllListeners()
+        this.props.navigator.popToTop()
+    }
+
     render() {
         const network = this.props.network
         return (
-            <TouchableHighlight underlayColor='#BFBFBF' onPress={() => alert('Malone take of care this')}>
+            <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectNetwork(network)}>
                 <View style={styles.main_container}>
                     <View style={styles.image_container}>
                         <Image style={styles.image} source={network.image}/>
@@ -64,4 +73,15 @@ const styles = StyleSheet.create({
 
 })
 
-export default NetworkItem;
+const mapStateToProps = (state) => {
+    return {}
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: (action) => { dispatch(action) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NetworkItem);

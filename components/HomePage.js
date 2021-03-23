@@ -3,13 +3,18 @@ import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'r
 import { Button } from '@ui-kitten/components'
 import Scanner from './Scanner';
 import { DeviceEventEmitter } from 'react-native'
+import { connect } from 'react-redux'
 
 function HomePage(props) {
 
 
     const [isScan, setScan] = useState(false)
+    const [isSelectedN, getSelectedN] = useState(false)
+    const [isSelectedA, getSelectedA] = useState(false)
 
     DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
+    DeviceEventEmitter.addListener("event.Selected", () => { getSelectedN(true) })
+    DeviceEventEmitter.addListener("event.Selected", () => { getSelectedN(true) })
 
     const _mainDisplay = () => {
         return (
@@ -22,9 +27,9 @@ function HomePage(props) {
                 </View>
                 <View style={styles.button_view}>
                     <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
-                        Select a network
+                      { !isSelectedN ?  'Select a network' : props.selectedNetwork + ' is selected' }
                     </Button>
-                    <Button style={styles.button} disabled={true}>
+                    <Button style={styles.button} disabled={!isSelectedN}>
                         Select an application
                     </Button>
                 </View>
@@ -44,7 +49,6 @@ function HomePage(props) {
             { isScan && _scan()}
             { !isScan && _mainDisplay()}
         </SafeAreaView>
-
     )
 
 
@@ -73,10 +77,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     button: {
-        width: "80%"
+        width: "80%",
+        margin: 20
     }
 
 
 })
 
-export default HomePage
+const mapStateToProps = (state) => {
+    return { selectedNetwork: state.selectedNetwork,
+             selectedApp : state.selectedApp }
+}
+
+export default connect(mapStateToProps)(HomePage)
