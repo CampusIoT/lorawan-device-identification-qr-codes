@@ -5,7 +5,8 @@ const initialState = {
 }
 
 function parseQRData(data) {
-    const words = data.split(':')
+    let words = data.split(':')
+
     let device = {
         appEUI: words[2],
         devEUI: words[3],
@@ -13,14 +14,37 @@ function parseQRData(data) {
     }
 
     if (words.length > 5) {
+        let ownerToken, serNum, proprietary, checksum
+        words = words.slice(5)
+        ownerToken = words.find(elt => elt.startsWith('O'))
+
+        if (ownerToken !== undefined)
+            ownerToken = ownerToken.substring(1)
+
+        serNum = words.find(elt => elt.startsWith('S'))
+
+        if (serNum !== undefined)
+            serNum = serNum.substring(1)
+
+        proprietary = words.find(elt => elt.startsWith('P'))
+
+        if (proprietary !== undefined)
+            proprietary = proprietary.substring(1)
+
+        checksum = words.find(elt => elt.startsWith('C'))
+
+        if (checksum !== undefined)
+            checksum = checksum.substring(1)
+            
         device = {
             ...device,
-            ownerToken: words.find((elt) => elt.startsWith('O')).substring(1),
-            serNum: words.find((elt) => elt.startsWith('S')).substring(1),
-            proprietary: words.find((elt) => elt.startsWith('P')).substring(1),
-            checksum: words.find((elt) => elt.startsWith('C')).substring(1),
+            ownerToken: ownerToken,
+            serNum: serNum,
+            proprietary: proprietary,
+            checksum: checksum
         }
     }
+    
     return device
 }
 
@@ -31,6 +55,18 @@ export function scanReducer(state = initialState, action) {
             nextState = {
                 ...state,
                 device: parseQRData(action.value)
+            }
+            return nextState || state
+        case 'CHOOSE_NETWORK':
+            nextState = {
+                ...state,
+                selectedNetwork: action.value
+            }
+            return nextState || state
+        case 'CHOOSE_APP':
+            nextState = {
+                ...state,
+                selectedApp: action.value
             }
             return nextState || state
         default:

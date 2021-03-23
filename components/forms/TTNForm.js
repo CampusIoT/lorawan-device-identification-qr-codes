@@ -47,7 +47,7 @@ function TTNForm(props) {
     const setDefault = name => {
         switch (name) {
             case 'name':
-                return "dev"
+                return "dev"+ props.device.devEUI.substring(0, 4).toLowerCase()
             case 'description':
                 return 'A new device'
             default:
@@ -99,7 +99,7 @@ function TTNForm(props) {
                         name="device_id"
                         defaultValue={setDefault('name')}
                     />
-                     {errors.name && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
+                     {errors.device_id && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
 
 
                     <Controller
