@@ -1,27 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native'
-import { connect } from 'react-redux'
+import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
+import { connect } from 'react-redux'
 import { DeviceEventEmitter } from 'react-native'
 import { getToken } from '../api/Chirpstack';
 class NetworkItem extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
-    async selectNetwork(network){
-        this.props.dispatch({type: 'CHOOSE_NETWORK', value: network.name})
-        let login, password, token
-        login = network.login
-        password = network.password
+    async selectNetwork(network) {
+        this.props.dispatch({ type: 'CHOOSE_NETWORK', value: network.name })
+        let token
 
-        this.props.dispatch({type: 'ADD_LOG', value: {login: login, password: password}})
         if (network.name === 'Chirpstack') {
+            let login, password
+            login = network.login
+            password = network.password
+            this.props.dispatch({ type: 'ADD_LOG', value: { login: login, password: password } })
             token = await getToken(login, password)
         } else {
-            token = password
+            token = network.apiKey
         }
 
-        this.props.dispatch({type: 'ADD_JWT', value: token})
+        this.props.dispatch({ type: 'ADD_JWT', value: token })
 
         DeviceEventEmitter.emit("event.SelectedN")
         this.props.navigator.popToTop()
@@ -33,11 +34,11 @@ class NetworkItem extends React.Component {
             <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectNetwork(network)}>
                 <View style={styles.main_container}>
                     <View style={styles.image_container}>
-                        <Image style={styles.image} source={network.image}/>
+                        <Image style={styles.image} source={network.image} />
                     </View>
-                    
+
                     <View style={{ borderRightWidth: 1, borderRightColor: 'grey', }} />
-                    
+
                     <View style={styles.details_container}>
                         <Text style={styles.name}>{network.name}</Text>
                         <Text style={styles.login}>{network.login}</Text>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
         width: 120
     },
 
-    image:{
+    image: {
         flex: 1,
         resizeMode: 'contain',
         width: 110,
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     },
 
     details_container: {
-        flex: 1,  
+        flex: 1,
         justifyContent: 'center',
     },
 

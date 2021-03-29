@@ -8,13 +8,30 @@ class ApplicationItem extends React.Component {
     }
 
     selectApplication(app){
-        this.props.dispatch({type: 'CHOOSE_APP', value: {name: app.name, id: app.id}})
+        console.log(app)
+        if (this.props.selectedNetwork === 'Chirpstack')
+            this.props.dispatch({type: 'CHOOSE_APP', value: {name: app.name, id: app.id}})
+        else 
+            this.props.dispatch({type: 'CHOOSE_APP', value: {name: app.application_id, id: app.application_id}})
+
         DeviceEventEmitter.emit("event.SelectedA")
         this.props.navigator.popToTop()
     }
 
-    render() {
-        const application = this.props.application
+    ttnItem(application){
+        console.log(application)
+        return(
+            <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectApplication(application)}>
+                <View style={styles.main_container}>
+                    <View style={styles.title_container}>
+                        <Text style={styles.name}>{application.application_id}</Text>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
+    chirpstackItem(application){
         return (
             <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectApplication(application)}>
                 <View style={styles.main_container}>
@@ -27,6 +44,11 @@ class ApplicationItem extends React.Component {
                 </View>
           </TouchableHighlight>
         )
+    }
+
+    render() {
+        const application = this.props.application
+        return this.props.selectedNetwork === 'Chirpstack' ? this.chirpstackItem(application) : this.ttnItem(application)
     }
 }
 
@@ -59,7 +81,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-    return {}
+    return {selectedNetwork: state.selectedNetwork}
 }
 
 

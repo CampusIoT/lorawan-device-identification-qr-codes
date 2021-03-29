@@ -15,7 +15,7 @@ class NetworkSelection extends React.Component {
                          name: 'The Things Network',
                          image: require('../assets/logo_ttn.png'),
                          login: '',
-                         password: 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ'},
+                         apiKey: 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ'},
                         ]
     }
 

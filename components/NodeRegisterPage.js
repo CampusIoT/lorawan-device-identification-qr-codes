@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { Button, Icon } from '@ui-kitten/components';
 import ChirpstackForm from './forms/ChirpstackForm';
+import TTNForm from './forms/TTNForm'
 import { getProfile } from '../api/Chirpstack';
 import { connect } from 'react-redux'
 
