@@ -2,6 +2,7 @@ export async function getToken(id, pwd) {
     const url = 'https://lns.campusiot.imag.fr/api/internal/login'
     const content = JSON.stringify({ username: id, password: pwd })
     const headers = new Headers()
+    console.log(id, pwd)
     headers.append('Content-Type', 'application/json')
     const token = await fetch(url, {
         method: "POST",
@@ -142,6 +143,8 @@ export async function addDevice(deviceContent, token) {
     headers.append('Content-Type', 'application/json')
     headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
     const content = JSON.stringify({ device: { ...deviceContent } })
+    // console.log(token)
+    // console.log(deviceContent)
 
     const res = await fetch(url, {
         method: "POST",
@@ -150,6 +153,7 @@ export async function addDevice(deviceContent, token) {
     })
         .then(response => response.json())
         .then(result => {
+            // console.log(result)
             if (result.code === 16) {
                 alert("Session expired.\nPlease, log in.")
                 return -1

@@ -1,7 +1,6 @@
-
-
 const initialState = {
-    device: {}
+    device: {},
+    jwt: "",
 }
 
 function parseQRData(data) {
@@ -35,7 +34,7 @@ function parseQRData(data) {
 
         if (checksum !== undefined)
             checksum = checksum.substring(1)
-            
+
         device = {
             ...device,
             ownerToken: ownerToken,
@@ -44,11 +43,11 @@ function parseQRData(data) {
             checksum: checksum
         }
     }
-    
+
     return device
 }
 
-export function scanReducer(state = initialState, action) {
+export function appReducer(state = initialState, action) {
     let nextState
     switch (action.type) {
         case 'ADD_NODE':
@@ -64,9 +63,30 @@ export function scanReducer(state = initialState, action) {
             }
             return nextState || state
         case 'CHOOSE_APP':
+            console.log(action.value.name, action.value.id)
             nextState = {
                 ...state,
-                selectedApp: action.value
+                selectedApp: action.value.name,
+                applicationID: action.value.id
+            }
+            return nextState || state
+        case 'ADD_JWT':
+            nextState = {
+                ...state,
+                jwt: action.value,
+            }
+            return nextState || state
+        case 'DELETE_JWT':
+            nextState = {
+                ...state,
+                jwt: ""
+            }
+            return nextState || state
+        case 'ADD_LOG':
+            nextState = {
+                ...state,
+                login: action.value.login,
+                password: action.value.password
             }
             return nextState || state
         default:

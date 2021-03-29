@@ -43,17 +43,16 @@ export async function addDevice (contentDevice, APIKey){
     })
         .then(response => response.json())
         .then(result => {
-            console.log(result)
-            console.log(result.code)
             if (result.code === 6) {
                 alert("ID already taken.\nPlease, change.")
-                return result
+                return result.code
             }
-            return result
+            return 0
         })
         .catch(error => {
             alert("Sorry, an issue occured :\n" + error)
             console.log("error", error)
+            return -1
         })
 
     return res

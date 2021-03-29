@@ -41,6 +41,7 @@ class NetworkSelection extends React.Component {
                 }
             })
             .catch(error => alert(error));
+    
         return
     }
 

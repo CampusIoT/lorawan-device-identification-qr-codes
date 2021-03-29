@@ -2,8 +2,9 @@ import React from 'react'
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { Button, Icon } from '@ui-kitten/components';
 import ChirpstackForm from './forms/ChirpstackForm';
-import TTNForm from './forms/TTNForm';
+import TTNForm from './forms/TTNForm'
 import { getProfile } from '../api/Chirpstack';
+import { connect } from 'react-redux'
 
 const arrowBackIcon = (props) => (
     <Icon {...props} name='arrow-ios-back-outline' />
@@ -14,27 +15,24 @@ class NodeRegisterPage extends React.Component {
         super(props)
         this.state = {
             profiles: [],
-            loading: true,
+            loading: true
         }
     }
 
     componentDidMount() {
-        this.setState({loading: true})
-        let isSubscribed = true
-        getProfile("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjUwNTExMiwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY0MTg3MTIsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.R0B8_FLla3Mlyeks40Awzx6qYcLVVBwRX-iaYAVmysg").then(data => isSubscribed ? this.setState({ profiles: data.result, loading: false }) : null).catch(error => alert('error\n' + error))
-        return () => isSubscribed = false
+        if (this.props.selectedNetwork === 'Chirpstack') {
+            getProfile(this.props.jwt).then(data => this.setState({ profiles: data.result, loading: false })).catch(error => alert('error\n' + error))
+        }
+        // return
     }
 
     _display_form(profiles) {
-        //     const api = state.api
-        //     if (api === 'chirpstack'){
-        // return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
-        //     }
-        //     else if (api === 'TTN'){
-                 return (
-                     <TTNForm navigation={this.props.navigation}></TTNForm>
-                 );
-        //     }
+        const api = this.props.selectedNetwork
+        if (api === 'Chirpstack') {
+            return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
+        } else {
+            return <TTNForm navigation={this.props.navigation} />
+        }
 
     }
 
@@ -71,4 +69,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NodeRegisterPage
+const mapStateToProps = (state) => {
+    return {
+        jwt: state.jwt,
+        selectedNetwork: state.selectedNetwork
+    }
+}
+
+export default connect(mapStateToProps)(NodeRegisterPage)

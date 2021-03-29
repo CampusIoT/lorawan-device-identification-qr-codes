@@ -31,16 +31,15 @@ function TTNForm(props) {
                 description: data.description
             }
         }
-        const res = await addDevice(data, "test-app-tqt", 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ')//add token value from redux)
+       
+        const res = await addDevice(data, props.jwt)
 
-        if (Object.keys(res).length === 0) {
+        console.log(res)
+        if (res === 0) {
             alert("The device has correctly been added")
             DeviceEventEmitter.emit("event.setScan")
-            DeviceEventEmitter.removeAllListeners();
-            props.navigation.navigate('Home')
-
-        } else {
-            alert("An error occured, please try again.")
+            console.log(props.navigation)
+            props.navigation.popToTop()
         }
     }
 
@@ -204,7 +203,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        device: state.device
+        device: state.device,
+        jwt: state.jwt
     }
 }
 
