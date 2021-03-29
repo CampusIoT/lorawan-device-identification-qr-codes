@@ -2,8 +2,8 @@ import React from 'react';
 import { SafeAreaView, View, StyleSheet, Text, FlatList } from 'react-native'
 import {connect} from 'react-redux'
 import ApplicationItem from './ApplicationItem.js'
-import {getAppList as ChirpstackFetcher, getToken} from '../api/Chirpstack.js'
-//import {getAppList as TTNFetcher} from '../api/Chirpstack.js'
+import {getAppList as ChirpstackFetcher, getToken} from '../api/Chirpstack'
+import {getAppList as TTNFetcher} from '../api/ttn'
 
 class ApplicationSelection extends React.Component {
     constructor(props){
@@ -13,8 +13,12 @@ class ApplicationSelection extends React.Component {
 
     componentDidMount(){ 
         let applications
-        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjU5NzI1OSwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY1MTA4NTksInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.F1Vbx6hM27p5jz4Ay_ut53Jnk-JpS9kyKREUiCQTrak'
-        applications = ChirpstackFetcher(token).then(data =>  this.setState({applications: data.result}) ).catch(error => alert('error\n' + error))
+        let token = this.props.jwt
+        if (this.props.selectedNetwork === 'Chirstack')
+            applications = ChirpstackFetcher(token).then(data =>  this.setState({applications: data.result}) ).catch(error => alert('error\n' + error))
+        else
+            applications = TTNFetcher(token).then(data => {console.log(data)
+                 this.setState({applications: data.result})} ).catch(error => alert('error\n' + error))
     }
 
     render(){

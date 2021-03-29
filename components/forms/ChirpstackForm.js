@@ -10,7 +10,7 @@ const checkIcon = (props) => (
 );
 
 function ChirpstackForm(props) {
-    const { control, handleSubmit, errors } = useForm({mode: 'onChange' });
+    const { control, handleSubmit, errors } = useForm({ mode: 'onChange' });
     const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0))
     const name_reg = /^([a-zA-Z0-9-]*)$/
 
@@ -19,17 +19,17 @@ function ChirpstackForm(props) {
         const pid = props.profiles[selectedIndex.row].id.replace(rexp, "")
         data = {
             ...data,
-            deviceProfileID: pid
+            deviceProfileID: pid,
+            applicationID: props.appID
         }
-        const res = await addDevice(data, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjUwNTExMiwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY0MTg3MTIsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.R0B8_FLla3Mlyeks40Awzx6qYcLVVBwRX-iaYAVmysg")//add token value from redux)
+        const res = await addDevice(data, props.jwt)
 
         if (res === 0) {
             alert("The device has correctly been added")
         }
-        
+
         DeviceEventEmitter.emit("event.setScan")
-        DeviceEventEmitter.removeAllListeners()
-        props.navigation.navigate('Home')
+        props.navigation.popToTop()
     }
 
     const setDefault = name => {
@@ -171,7 +171,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        device: state.device
+        device: state.device,
+        jwt: state.jwt,
+        appID: state.applicationID
     }
 }
 

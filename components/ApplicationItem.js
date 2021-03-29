@@ -8,9 +8,8 @@ class ApplicationItem extends React.Component {
     }
 
     selectApplication(app){
-        this.props.dispatch({type: 'CHOOSE_APP', value: app.name})
+        this.props.dispatch({type: 'CHOOSE_APP', value: {name: app.name, id: app.id}})
         DeviceEventEmitter.emit("event.SelectedA")
-        DeviceEventEmitter.removeAllListeners()
         this.props.navigator.popToTop()
     }
 

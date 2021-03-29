@@ -9,11 +9,13 @@ class NetworkSelection extends React.Component {
         this.networks = [{id: '1',
                          name: 'Chirpstack',
                          image: require('../assets/logo_chirpstack.png'),
-                         login: 'login@example.com'},
-                        {id: '2',
+                         login: 'GuestSandbox',
+                         password: 'mF3rC3tD8hA8hH5j'},
+                         {id: '2',
                          name: 'The Things Network',
                          image: require('../assets/logo_ttn.png'),
-                         login: 'login@example.com'},
+                         login: '',
+                         password: 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ'},
                         ]
     }
 

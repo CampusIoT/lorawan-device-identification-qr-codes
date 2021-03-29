@@ -142,6 +142,8 @@ export async function addDevice(deviceContent, token) {
     headers.append('Content-Type', 'application/json')
     headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
     const content = JSON.stringify({ device: { ...deviceContent } })
+    console.log(token)
+    console.log(deviceContent)
 
     const res = await fetch(url, {
         method: "POST",
@@ -150,6 +152,7 @@ export async function addDevice(deviceContent, token) {
     })
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             if (result.code === 16) {
                 alert("Session expired.\nPlease, log in.")
                 return -1

@@ -39,7 +39,7 @@ function TTNForm(props) {
             alert("The device has correctly been added")
             DeviceEventEmitter.emit("event.setScan")
             DeviceEventEmitter.removeAllListeners();
-            props.navigation.navigate('Home')
+            props.navigation.popToPop()
 
         } else {
             alert("An error occured, please try again.")

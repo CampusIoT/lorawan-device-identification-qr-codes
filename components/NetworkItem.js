@@ -2,15 +2,28 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native'
 import { connect } from 'react-redux'
 import { DeviceEventEmitter } from 'react-native'
+import { getToken } from '../api/Chirpstack';
 class NetworkItem extends React.Component {
     constructor(props){
         super(props)
     }
 
-    selectNetwork(network){
+    async selectNetwork(network){
         this.props.dispatch({type: 'CHOOSE_NETWORK', value: network.name})
+        let login, password, token
+        login = network.login
+        password = network.password
+
+        this.props.dispatch({type: 'ADD_LOG', value: {login: login, password: password}})
+        if (network.name === 'Chirpstack') {
+            token = await getToken(login, password)
+        } else {
+            token = password
+        }
+
+        this.props.dispatch({type: 'ADD_JWT', value: token})
+
         DeviceEventEmitter.emit("event.SelectedN")
-        DeviceEventEmitter.removeAllListeners()
         this.props.navigator.popToTop()
     }
 
