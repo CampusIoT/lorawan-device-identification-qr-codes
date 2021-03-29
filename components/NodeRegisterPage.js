@@ -4,15 +4,6 @@ import { Button, Icon } from '@ui-kitten/components';
 import ChirpstackForm from './forms/ChirpstackForm';
 import TTNForm from './forms/TTNForm';
 import { getProfile } from '../api/Chirpstack';
-<<<<<<< HEAD
-
-
-
-const checkIcon = (props) => (
-    <Icon {...props} name='done-all-outline' />
-);
-=======
->>>>>>> 2c8ce8ee936e6dfe19fc72c5eb2f2e43733e5992
 
 const arrowBackIcon = (props) => (
     <Icon {...props} name='arrow-ios-back-outline' />
@@ -40,7 +31,7 @@ class NodeRegisterPage extends React.Component {
         return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
         //     }
         //     else if (api === 'TTN'){
-                 return (
+                 return ( 
                      <TTNForm navigation={this.props.navigation}></TTNForm>
                  );
         //     }

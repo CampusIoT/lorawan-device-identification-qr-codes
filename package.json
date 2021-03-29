@@ -21,6 +21,7 @@
     "react-hook-form": "^6.15.4",
     "react-native": "0.63.4",
     "react-native-camera": "^3.42.2",
+    "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-permissions": "^2.2.2",
     "react-native-qrcode-scanner": "^1.5.3",

@@ -3,7 +3,7 @@ import { ScrollView, View, TextInput, Alert, StyleSheet, DeviceEventEmitter } fr
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
-import { addDevice } from '../../api/ttn'
+import { addDevice } from '../../api/TTN'
 
 const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />

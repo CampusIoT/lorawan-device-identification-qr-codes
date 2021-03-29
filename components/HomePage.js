@@ -42,8 +42,6 @@ function HomePage(props) {
             <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
-    import { DeviceEventEmitter } from 'react-native'
-    import { connect } from 'react-redux'
     
 
 
