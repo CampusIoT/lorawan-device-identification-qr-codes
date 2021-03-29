@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Button } from '@ui-kitten/components'
 import Scanner from './Scanner';
-<<<<<<< HEAD
-import { addDevice, getAppList } from '../api/ttn';
 import { DeviceEventEmitter } from 'react-native'
 import { connect } from 'react-redux'
-
-=======
-import { DeviceEventEmitter } from 'react-native'
-import { connect } from 'react-redux'
->>>>>>> 2c8ce8ee936e6dfe19fc72c5eb2f2e43733e5992
 
 function HomePage(props) {
 
@@ -49,6 +42,9 @@ function HomePage(props) {
             <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
+    import { DeviceEventEmitter } from 'react-native'
+    import { connect } from 'react-redux'
+    
 
 
     return (
