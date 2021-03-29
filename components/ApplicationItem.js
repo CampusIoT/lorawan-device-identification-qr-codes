@@ -14,8 +14,19 @@ class ApplicationItem extends React.Component {
         this.props.navigator.popToTop()
     }
 
-    render() {
-        const application = this.props.application
+    ttnItem(application){
+        return(
+            <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectApplication(application)}>
+                <View style={styles.main_container}>
+                    <View style={styles.title_container}>
+                        <Text style={styles.name}>{application.ids.application_id}</Text>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
+    chirpstackItem(application){
         return (
             <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectApplication(application)}>
                 <View style={styles.main_container}>
@@ -28,6 +39,11 @@ class ApplicationItem extends React.Component {
                 </View>
           </TouchableHighlight>
         )
+    }
+
+    render() {
+        const application = this.props.application
+        return this.props.selectedNetwork === 'Chirpstack' ? this.chirpstackItem(application) : this.ttnItem(application)
     }
 }
 
@@ -60,7 +76,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => {
-    return {}
+    return {selectedNetwork: state.selectedNetwork}
 }
 
 

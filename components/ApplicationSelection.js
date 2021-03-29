@@ -11,9 +11,9 @@ class ApplicationSelection extends React.Component {
         this.state = {applications: []}
     }
 
-    componentDidMount(){ 
+    async componentDidMount(){ 
         let applications
-        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjU5NzI1OSwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY1MTA4NTksInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.F1Vbx6hM27p5jz4Ay_ut53Jnk-JpS9kyKREUiCQTrak'
+        let token = await getToken('GuestSandbox', 'xxxxxx')
         applications = ChirpstackFetcher(token).then(data =>  this.setState({applications: data.result}) ).catch(error => alert('error\n' + error))
     }
 
@@ -39,14 +39,11 @@ const renderSeparator = () => {
 
 const _getApplications = async () => {
     let applications
-    let token = await getToken('GuestSandbox', 'mF3rC3tD8hA8hH5j')
-    console.log(token)
-    //if(this.props.selectedNetwork === 'Chirpstack')
-    //applications = await ChirpstackFetcher(this.props.jwt)
-    applications = await ChirpstackFetcher(token)
-    //else 
+    let token = await getToken('GuestSandbox', 'xxxxxx')
+    if(this.props.selectedNetwork === 'Chirpstack')
+        applications = await ChirpstackFetcher(token) // await ChirpstackFetcher(this.props.jwt)
+    else 
     //   applications = await TTNFetcher(this.props.jwt)
-    //console.log(applications)
     return(applications.result)   
 }
 
