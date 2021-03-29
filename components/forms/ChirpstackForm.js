@@ -26,10 +26,9 @@ function ChirpstackForm(props) {
 
         if (res === 0) {
             alert("The device has correctly been added")
+            DeviceEventEmitter.emit("event.setScan")
+            props.navigation.popToTop()
         }
-
-        DeviceEventEmitter.emit("event.setScan")
-        props.navigation.popToTop()
     }
 
     const setDefault = name => {

@@ -53,6 +53,7 @@ function HomePage(props) {
             <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
+    
 
     return (
         <SafeAreaView style={styles.main_view}>

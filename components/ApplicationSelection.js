@@ -3,7 +3,7 @@ import { SafeAreaView, View, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import ApplicationItem from './ApplicationItem.js'
 import { getAppList as ChirpstackFetcher, getToken } from '../api/Chirpstack'
-import { getAppList as TTNFetcher } from '../api/ttn'
+import { getAppList as TTNFetcher } from '../api/TTN'
 
 class ApplicationSelection extends React.Component {
     constructor(props) {
@@ -33,7 +33,7 @@ class ApplicationSelection extends React.Component {
                 <FlatList
                     data={this.state.applications}
                     renderItem={({ item }) => <ApplicationItem application={item} navigator={this.props.navigation} />}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item, index) => index.toString()}
                     ItemSeparatorComponent={renderSeparator}
                 />
             </SafeAreaView>

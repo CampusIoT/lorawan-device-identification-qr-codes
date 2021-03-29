@@ -15,15 +15,13 @@ class NodeRegisterPage extends React.Component {
         super(props)
         this.state = {
             profiles: [],
-            loading: true,
         }
     }
 
     componentDidMount() {
-        this.setState({ loading: true })
-        let isSubscribed = true
-        getProfile(this.props.jwt).then(data => isSubscribed ? this.setState({ profiles: data.result, loading: false }) : null).catch(error => alert('error\n' + error))
-        return () => isSubscribed = false
+        if (this.props.selectedNetwork === 'Chirpstack')
+            getProfile(this.props.jwt).then(data => this.setState({ profiles: data.result, loading: false })).catch(error => alert('error\n' + error))
+        return
     }
 
     _display_form(profiles) {
