@@ -4,15 +4,9 @@ import { Button, Icon } from '@ui-kitten/components';
 import ChirpstackForm from './forms/ChirpstackForm';
 import { getProfile } from '../api/Chirpstack';
 
-
-const checkIcon = (props) => (
-    <Icon {...props} name='done-all-outline' />
-);
-
 const arrowBackIcon = (props) => (
     <Icon {...props} name='arrow-ios-back-outline' />
 );
-
 
 class NodeRegisterPage extends React.Component {
     constructor(props) {
