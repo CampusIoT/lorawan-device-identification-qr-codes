@@ -1,21 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight, DeviceEventEmitter } from 'react-native'
+import { connect } from 'react-redux'
 
 class ApplicationItem extends React.Component {
+    constructor(props){
+        super(props)
+    }
+
+    selectApplication(app){
+        this.props.dispatch({type: 'CHOOSE_APP', value: app.name})
+        DeviceEventEmitter.emit("event.SelectedA")
+        DeviceEventEmitter.removeAllListeners()
+        this.props.navigator.popToTop()
+    }
+
     render() {
         const application = this.props.application
         return (
-            <View style={styles.main_container}>
-                <TouchableHighlight onPress={console.log('Malone take of care this')}>
-                    <View styles={styles.title_container}>
-                        <Text>{application.name}</Text>
+            <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectApplication(application)}>
+                <View style={styles.main_container}>
+                    <View style={styles.title_container}>
+                        <Text style={styles.name}>{application.name}</Text>
                     </View>
-                    <View styles={styles.details_container}>
-                        <Text>{application.description}</Text>
-                        <Text>{application.id}</Text>
+                    <View style={styles.details_container}>
+                        <Text style={styles.description}>{application.description}</Text>
                     </View>
-                </TouchableHighlight>
-            </View>
+                </View>
+          </TouchableHighlight>
         )
     }
 }
@@ -23,7 +34,6 @@ class ApplicationItem extends React.Component {
 const styles = StyleSheet.create({
     main_container: {
         flex: 1,
-        heigth: 50,
     },
 
     title_container: {
@@ -31,14 +41,33 @@ const styles = StyleSheet.create({
     },
 
     details_container: {
-        flex: 1,
-        flexDirection: row,  
-        justifyContent: 'space-evenly',
+        flex: 2,
+        flexDirection: 'row',  
     },
 
-    title: {
+    name: {
         fontSize: 24,
-        fontWeight: bold,
+        fontWeight: '500',
+        marginBottom: 10,
+        marginTop: 10,
+        marginLeft: 5,
+    },
+
+    description: {
+        marginLeft: 5,
     },
 
 })
+
+const mapStateToProps = (state) => {
+    return {}
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: (action) => { dispatch(action) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationItem);

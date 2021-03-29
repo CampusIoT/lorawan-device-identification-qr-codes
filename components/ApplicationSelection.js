@@ -1,44 +1,58 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, FlatList } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Text, FlatList } from 'react-native'
 import {connect} from 'react-redux'
-import {getAppList as ChirpstackFetcher} from '../api/Chirpstack.js'
+import ApplicationItem from './ApplicationItem.js'
+import {getAppList as ChirpstackFetcher, getToken} from '../api/Chirpstack.js'
+//import {getAppList as TTNFetcher} from '../api/Chirpstack.js'
 
 class ApplicationSelection extends React.Component {
     constructor(props){
         super(props)
-        this.applications = _getApplications()
+        this.state = {applications: []}
+    }
+
+    componentDidMount(){ 
+        let applications
+        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjU5NzI1OSwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY1MTA4NTksInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6Ikd1ZXN0U2FuZGJveCJ9.F1Vbx6hM27p5jz4Ay_ut53Jnk-JpS9kyKREUiCQTrak'
+        applications = ChirpstackFetcher(token).then(data =>  this.setState({applications: data.result}) ).catch(error => alert('error\n' + error))
     }
 
     render(){
         return (
             <SafeAreaView>
                 <FlatList
-                    data={this.applications}
-                    renderItem = {({item}) => <ApplicationItem application={item}
-                    keyExtracotr={item => item.id} /> }
+                    data={this.state.applications}
+                    renderItem = {({item}) => <ApplicationItem application={item} navigator={this.props.navigation}/>}
+                    keyExtractor={item => item.id}
+                    ItemSeparatorComponent={renderSeparator} 
                 />
             </SafeAreaView>
         )
     }
 }
 
-// return a map -> <NetworkName, ApplicationFetcher>
-const _buildFetcherMap = () => {
-    let map = {};
-    map.Chirpstack = Chirpstack.ChirpstackFetcher(this.jwt_Chirpstack)
-    return(map)
+const renderSeparator = () => {
+    return (
+        <View style={{backgroundColor: 'black', height: 1, margin: 10}}/>
+    );
 }
 
-const _getApplications = async() => {
-    let map = _buildFetcherMap()
-    let fetcher = map[selectedNetwork]
-    let applications = await fetcher
-    return(applications)   
+const _getApplications = async () => {
+    let applications
+    let token = await getToken('GuestSandbox', 'mF3rC3tD8hA8hH5j')
+    console.log(token)
+    //if(this.props.selectedNetwork === 'Chirpstack')
+    //applications = await ChirpstackFetcher(this.props.jwt)
+    applications = await ChirpstackFetcher(token)
+    //else 
+    //   applications = await TTNFetcher(this.props.jwt)
+    //console.log(applications)
+    return(applications.result)   
 }
 
 const mapStateToProps = (state) => {
     return {selectedNetwork: state.selectedNetwork,
-            jwt_Chirpstack: state.jwt_Chirpstack}
+            jwt: state.jwt}
 }
 
 const styles = StyleSheet.create({

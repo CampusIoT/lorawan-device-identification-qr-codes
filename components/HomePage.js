@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Button } from '@ui-kitten/components'
 import Scanner from './Scanner';
+<<<<<<< HEAD
 import { addDevice, getAppList } from '../api/ttn';
 import { DeviceEventEmitter } from 'react-native'
 import { connect } from 'react-redux'
 
+=======
+import { DeviceEventEmitter } from 'react-native'
+import { connect } from 'react-redux'
+>>>>>>> 2c8ce8ee936e6dfe19fc72c5eb2f2e43733e5992
 
 function HomePage(props) {
 
@@ -15,8 +20,8 @@ function HomePage(props) {
     const [isSelectedA, getSelectedA] = useState(false)
 
     DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
-    DeviceEventEmitter.addListener("event.Selected", () => { getSelectedN(true) })
-    DeviceEventEmitter.addListener("event.Selected", () => { getSelectedN(true) })
+    DeviceEventEmitter.addListener("event.SelectedN", () => { getSelectedN(true), getSelectedA(false), props.selectedApp = '' })
+    DeviceEventEmitter.addListener("event.SelectedA", () => { getSelectedA(true) })
 
     const _mainDisplay = () => {
         return (
@@ -31,8 +36,8 @@ function HomePage(props) {
                     <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
                       { !isSelectedN ?  'Select a network' : props.selectedNetwork + ' is selected' }
                     </Button>
-                    <Button style={styles.button} disabled={!isSelectedN}>
-                        Select an application
+                    <Button style={styles.button} onPress= {() => props.navigation.navigate("ApplicationSelection")} disabled={!isSelectedN}>
+                    { !isSelectedA ?  'Select an application ' : props.selectedApp + ' is selected' }
                     </Button>
                 </View>
             </>
@@ -80,7 +85,8 @@ const styles = StyleSheet.create({
     },
     button: {
         width: "80%",
-        margin: 20
+        margin: 20,
+        textAlign: 'center'
     }
 
 
