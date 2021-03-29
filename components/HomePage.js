@@ -23,7 +23,7 @@ function HomePage(props) {
                 <View style={styles.screen}>
                     <Text style={styles.text}>ScanWAN</Text>
                     <TouchableOpacity style={styles.touchable} onPress={() => {
-                        console.log(props.jwt)
+                        // console.log(props.jwt)
                         if (props.selectedNetwork === undefined) {
                             alert("Error, please choose a network ! ")
                         } else if (props.selectedApp === undefined) {

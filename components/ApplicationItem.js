@@ -8,7 +8,7 @@ class ApplicationItem extends React.Component {
     }
 
     selectApplication(app){
-        console.log(app)
+        // console.log(app)
         if (this.props.selectedNetwork === 'Chirpstack')
             this.props.dispatch({type: 'CHOOSE_APP', value: {name: app.name, id: app.id}})
         else 
@@ -19,7 +19,7 @@ class ApplicationItem extends React.Component {
     }
 
     ttnItem(application){
-        console.log(application)
+        // console.log(application)
         return(
             <TouchableHighlight underlayColor='#BFBFBF' onPress={() => this.selectApplication(application)}>
                 <View style={styles.main_container}>
