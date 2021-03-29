@@ -13,7 +13,7 @@ export function storeLogTTN(APIKey) {
 
     return (
         // write the file
-        RNFS.writeFile(path, '{"APIkey" : "' + APIKey + '" }', 'utf8')
+        RNFS.writeFile(path, '{"name" : "The Things Network" , APIkey" : "' + APIKey + '" }', 'utf8')
             .then((success) => {
                 console.log('FILE WRITTEN!');
             })
@@ -36,7 +36,7 @@ export function storeLogChirpstack(login, password) {
 
         
         // write the file
-        RNFS.writeFile(path, '{"login" : "' + login + '","password" : "' + password + '" }', 'utf8')
+        RNFS.writeFile(path, '{"name" : "Chirpstack" , login" : "' + login + '","password" : "' + password + '" }', 'utf8')
             .then((success) => {
                 console.log('FILE WRITTEN!');
             })
