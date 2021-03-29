@@ -42,6 +42,7 @@ function HomePage(props) {
             <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
+    
 
 
     return (

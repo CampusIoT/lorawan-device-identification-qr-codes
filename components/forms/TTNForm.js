@@ -3,27 +3,27 @@ import { ScrollView, View, TextInput, Alert, StyleSheet, DeviceEventEmitter } fr
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
-import { addDevice } from '../../api/ttn'
+import { addDevice } from '../../api/TTN'
 
 const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />
 );
 
 function TTNForm(props) {
-    const { control, handleSubmit, errors } = useForm();
+    const { control, handleSubmit, errors } = useForm({mode:'onChange'});
+
+    const regex1 = /^[a-z0-9](?:[-]?[a-z0-9]){2,}$/
+    
 
     const onSubmit = async data => {
-        const rexp = new RegExp('-', 'g')
-        // device.props.application=
-        // const pid = props.profiles[selectedIndex.row].id.replace(rexp, "")
         data = {
             end_device: {
                 ids: {
                     device_id: data.device_id,
                     dev_eui: data.dev_eui,
                     join_eui: data.join_eui,
-                    applications_ids: {
-                        application_id: "test-app-tqt" 
+                    application_ids: {
+                        application_id: "test-app-tqt"
                     },
                     dev_addr: "00000000"
                 },
@@ -31,8 +31,6 @@ function TTNForm(props) {
                 description: data.description
             }
         }
-        console.log(data)
-        console.log(data.end_device.ids.applications_ids)
         const res = await addDevice(data, "test-app-tqt", 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ')//add token value from redux)
 
         if (Object.keys(res).length === 0) {
@@ -49,7 +47,7 @@ function TTNForm(props) {
     const setDefault = name => {
         switch (name) {
             case 'name':
-                return "dehkugyufgukfkuiuykd"
+                return "dev"+ props.device.devEUI.substring(0, 4).toLowerCase()
             case 'description':
                 return 'A new device'
             default:
@@ -77,9 +75,12 @@ function TTNForm(props) {
                             </>
                         )}
                         name="name"
-                        rules={{ required: false }}
+                        rules={{pattern: regex1}}
                         defaultValue=""
                     />
+
+                    {errors.name && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
+                    
 
                     <Controller
                         control={control}
@@ -94,9 +95,11 @@ function TTNForm(props) {
                                 />
                             </>
                         )}
+                        rules={{pattern: regex1}}
                         name="device_id"
                         defaultValue={setDefault('name')}
                     />
+                     {errors.device_id && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
 
 
                     <Controller
@@ -109,6 +112,8 @@ function TTNForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
+                                    multiline={true}
+                                    maxLength={2000}
                                 />
                             </>
                         )}
