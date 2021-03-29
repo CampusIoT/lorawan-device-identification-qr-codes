@@ -9,7 +9,7 @@ class NetworkItem extends React.Component {
 
     selectNetwork(network){
         this.props.dispatch({type: 'CHOOSE_NETWORK', value: network.name})
-        DeviceEventEmitter.emit("event.Selected")
+        DeviceEventEmitter.emit("event.SelectedN")
         DeviceEventEmitter.removeAllListeners()
         this.props.navigator.popToTop()
     }

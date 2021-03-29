@@ -5,16 +5,9 @@ import ChirpstackForm from './forms/ChirpstackForm';
 import TTNForm from './forms/TTNForm';
 import { getProfile } from '../api/Chirpstack';
 
-
-
-const checkIcon = (props) => (
-    <Icon {...props} name='done-all-outline' />
-);
-
 const arrowBackIcon = (props) => (
     <Icon {...props} name='arrow-ios-back-outline' />
 );
-
 
 class NodeRegisterPage extends React.Component {
     constructor(props) {
@@ -35,7 +28,7 @@ class NodeRegisterPage extends React.Component {
     _display_form(profiles) {
         //     const api = state.api
         //     if (api === 'chirpstack'){
-        //return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
+        return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
         //     }
         //     else if (api === 'TTN'){
                  return (

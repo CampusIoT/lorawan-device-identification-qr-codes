@@ -7,8 +7,12 @@ import { Provider } from 'react-redux'
 import Store from './store/configureStore'
 import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
+<<<<<<< HEAD
 import Navigation  from './navigation/Navigation'
 
+=======
+import Navigation from './navigation/Navigation'
+>>>>>>> 2c8ce8ee936e6dfe19fc72c5eb2f2e43733e5992
 
 const App = () => {
 
