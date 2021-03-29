@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Button } from '@ui-kitten/components'
 import Scanner from './Scanner';
-import { addDevice, getAppList } from '../api/ttn';
-
+import { DeviceEventEmitter } from 'react-native'
+import { connect } from 'react-redux'
 
 function HomePage(props) {
 
+
     const [isScan, setScan] = useState(false)
+    const [isSelectedN, getSelectedN] = useState(false)
+    const [isSelectedA, getSelectedA] = useState(false)
+
+    DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
+    DeviceEventEmitter.addListener("event.SelectedN", () => { getSelectedN(true), getSelectedA(false), props.selectedApp = '' })
+    DeviceEventEmitter.addListener("event.SelectedA", () => { getSelectedA(true) })
 
     const _mainDisplay = () => {
         return (
@@ -19,24 +26,20 @@ function HomePage(props) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.button_view}>
-                    <Button style={styles.button} >
-                        Select a network
+                    <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
+                      { !isSelectedN ?  'Select a network' : props.selectedNetwork + ' is selected' }
                     </Button>
-                    <Button style={styles.button} disabled={true}>
-                        Select an application
+                    <Button style={styles.button} onPress= {() => props.navigation.navigate("ApplicationSelection")} disabled={!isSelectedN}>
+                    { !isSelectedA ?  'Select an application ' : props.selectedApp + ' is selected' }
                     </Button>
                 </View>
             </>
         )
     }
 
-    const _scanned = () => {
-        setScan(false)
-    }
-
     const _scan = () => {
         return (
-            <Scanner scanned={_scanned}navigation={props.navigation} />
+            <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
 
@@ -46,7 +49,6 @@ function HomePage(props) {
             { isScan && _scan()}
             { !isScan && _mainDisplay()}
         </SafeAreaView>
-
     )
 
 
@@ -67,19 +69,25 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     text: {
-        marginTop: 10,
         fontWeight: 'bold',
-        fontSize: 24
+        fontSize: 36
     },
     button_view: {
         flex: 1,
         alignItems: 'center'
     },
     button: {
-        width: "80%"
+        width: "80%",
+        margin: 20,
+        textAlign: 'center'
     }
 
 
 })
 
-export default HomePage
+const mapStateToProps = (state) => {
+    return { selectedNetwork: state.selectedNetwork,
+             selectedApp : state.selectedApp }
+}
+
+export default connect(mapStateToProps)(HomePage)

@@ -150,7 +150,11 @@ export async function addDevice(deviceContent, token) {
     })
         .then(response => response.json())
         .then(result => {
-            return result
+            if (result.code === 16) {
+                alert("Session expired.\nPlease, log in.")
+                return -1
+            }
+            return 0
         })
         .catch(error => {
             alert("Sorry, an issue occured :\n" + error)

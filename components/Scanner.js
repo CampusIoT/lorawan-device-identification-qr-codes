@@ -11,14 +11,18 @@ class Scanner extends Component {
     }
 
     _onSuccess = elt => {
-        //Navigate to form and update maybe state to initialise placeholder
-        this.props.dispatch({ type: 'ADD_NODE', value: elt.data })
-        this.props.navigation.navigate('Forms')
-        this.props.scanned()
+        const ds = elt.data.split(':')
+        if (ds.length !== 0 && ds[0] === "LW" ) {
+            this.props.dispatch({ type: 'ADD_NODE', value: elt.data })
+            this.props.navigation.navigate('Forms')
+            this.props.setScan(false)
+        } else {
+            alert("The QR Code is not a LoRaWAN's")
+        }
     }
 
     _goBack = () => {
-        this.props.scanned()
+        this.props.setScan(false)
         this.props.navigation.navigate('Home')
     }
 
@@ -32,11 +36,11 @@ class Scanner extends Component {
                     flasMode={RNCamera.Constants.FlashMode.auto}
                     topContent={
                         <Text style={styles.textBold} >
-                            Flasher le QR Code du système LoRa
+                            Flash LoRaWAN QR Code
                         </Text >
                     }
                     bottomContent={
-                        <Button onPress={this._goBack}> Retour </Button>
+                        <Button onPress={this._goBack}> Go back </Button>
                     }
                 />
             </View>
