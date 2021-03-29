@@ -1,23 +1,50 @@
 import React from 'react';
 import { SafeAreaView, View, StyleSheet, FlatList, Text } from 'react-native'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import ChirpstackForm from './forms/ChirpstackForm';
 import NetworkItem from './NetworkItem'
+import { getLogChirpstack, getLogTTN, storeLogChirpstack, storeLogTTN } from './Storage';
 
 class NetworkSelection extends React.Component {
-    constructor(props){
+
+    constructor(props) {
         super(props)
-        this.networks = [{id: '1',
-                         name: 'Chirpstack',
-                         image: require('../assets/logo_chirpstack.png'),
-                         login: 'login@example.com'},
-                        {id: '2',
-                         name: 'The Things Network',
-                         image: require('../assets/logo_ttn.png'),
-                         login: 'login@example.com'},
-                        ]
+        this.state = {
+            networks: []
+        }
     }
 
-    render(){
+    componentDidMount() {
+        getLogChirpstack()
+            .then(data => {
+                if (data !== undefined) {
+                    data = {
+                        ...data,
+                        image: require("../assets/logo_chirpstack.png"),
+                        id: "0"
+                    }
+                    let nets = [data]
+                    this.setState({ networks: nets })
+                }
+            })
+            .catch(error => alert(error));
+        getLogTTN()
+            .then(data => {
+                if (data !== undefined) {
+                    data = {
+                        ...data,
+                        image: require("../assets/logo_ttn.png"),
+                        id: "1"
+                    }
+                    let nets = [...this.state.networks, data]
+                    this.setState({ networks: nets })
+                }
+            })
+            .catch(error => alert(error));
+        return
+    }
+
+    render() {
         return (
             <SafeAreaView>
                 <View>
@@ -25,19 +52,19 @@ class NetworkSelection extends React.Component {
                     <Text style={styles.instruction}> Select a network to register your node in</Text>
                 </View>
                 <FlatList
-                    data={this.networks}
-                    renderItem = {(item) => <NetworkItem network={item.item} navigator={this.props.navigation}/>}
+                    data={this.state.networks}
+                    renderItem={(item) => <NetworkItem network={item.item} navigator={this.props.navigation} />}
                     keyExtractor={item => item.id}
-                    ItemSeparatorComponent={renderSeparator} 
+                    ItemSeparatorComponent={renderSeparator}
                 />
             </SafeAreaView>
         )
     }
 }
 
-const renderSeparator = () => {
+const renderSeparator = () => {
     return (
-        <View style={{backgroundColor: 'black', height: 1, marginLeft: 10, marginRight: 10}}/>
+        <View style={{ backgroundColor: 'black', height: 1, marginLeft: 10, marginRight: 10 }} />
     );
 }
 

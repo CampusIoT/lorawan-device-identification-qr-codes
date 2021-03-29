@@ -13,7 +13,7 @@ export function storeLogTTN(APIKey) {
 
     return (
         // write the file
-        RNFS.writeFile(path, '{"name" : "The Things Network" , APIkey" : "' + APIKey + '" }', 'utf8')
+        RNFS.writeFile(path, '{"name" : "The Things Network" , "APIkey" : "' + APIKey + '" }', 'utf8')
             .then((success) => {
                 console.log('FILE WRITTEN!');
             })
@@ -36,7 +36,7 @@ export function storeLogChirpstack(login, password) {
 
         
         // write the file
-        RNFS.writeFile(path, '{"name" : "Chirpstack" , login" : "' + login + '","password" : "' + password + '" }', 'utf8')
+        RNFS.writeFile(path, '{"name" : "Chirpstack" , "login" : "' + login + '","password" : "' + password + '" }', 'utf8')
             .then((success) => {
                 console.log('FILE WRITTEN!');
             })
@@ -58,34 +58,37 @@ export function getLogTTN(){
         RNFS.readFile(path,'utf8')
             .then((contents) => {
                 // log the file contents
-                console.log(contents);
+                // console.log(contents);
                 return  JSON.parse(contents)
             })
             .catch((err) => {
                 console.log(err.message, err.code);
-                alert("No API Key stored, please register your API Key")
+                return undefined
             })
     )
 }
 
-export function getLogChirpstack(){
+export async function getLogChirpstack(){
     const RNFS = require('react-native-fs');
 
     // create a path you want to write to
     // :warning: on iOS, you cannot write into `RNFS.MainBundlePath`,
     // but `RNFS.DocumentDirectoryPath` exists on both platforms and is writable
     const path = RNFS.DocumentDirectoryPath+'/chirpstack.json';
+    const res = await RNFS.readFile(path,'utf8')
+    .then((contents) => {
+        // log the file contents
+        // console.log(contents);
+        const data = JSON.parse(contents) 
+        // console.log(data)
+        return data
+    })
+    .catch((err) => {
+        console.log(err.message, err.code);
+        return undefined
+    })
 
     return (
-        RNFS.readFile(path,'utf8')
-            .then((contents) => {
-                // log the file contents
-                console.log(contents);
-                return JSON.parse(contents)
-            })
-            .catch((err) => {
-                console.log(err.message, err.code);
-                alert("No account log and password found, please register you ")
-            })
+       res
     )
 }

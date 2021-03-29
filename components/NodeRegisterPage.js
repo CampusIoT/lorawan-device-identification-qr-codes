@@ -28,7 +28,7 @@ class NodeRegisterPage extends React.Component {
     _display_form(profiles) {
         //     const api = state.api
         //     if (api === 'chirpstack'){
-        return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
+        // return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
         //     }
         //     else if (api === 'TTN'){
                  return (
