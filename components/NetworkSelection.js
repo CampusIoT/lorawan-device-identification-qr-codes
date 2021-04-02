@@ -18,6 +18,10 @@ class NetworkSelection extends React.Component {
     }
 
     componentDidMount() {
+        this._getLogs();
+    }
+
+    _getLogs(){
         getLogChirpstack()
             .then(data => {
                 if (data !== undefined) {
@@ -44,8 +48,14 @@ class NetworkSelection extends React.Component {
                 }
             })
             .catch(error => alert(error));
-    
-        return
+    }
+
+    _addChirpstackAccount = () => {
+        this.props.navigation.navigate('ChirpstackLogin')
+    }
+
+    _addTTNAccount = () => {
+        this.props.navigation.navigate('TTNLogin')
     }
 
     render() {

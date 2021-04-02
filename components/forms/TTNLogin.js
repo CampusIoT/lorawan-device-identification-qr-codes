@@ -13,8 +13,8 @@ function TTNLogin(props) {
     const { control, handleSubmit, errors } = useForm({mode: 'onChange'});
 
     const onSubmit = async data => {
-        storeLogTTN(data.APIKey)
-        props.navigation.goBack()
+        await storeLogTTN(data.APIKey)
+        props.navigation.popToTop()
     }
 
     return (

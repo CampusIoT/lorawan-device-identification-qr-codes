@@ -56,7 +56,7 @@ export function getLogTTN(){
         RNFS.readFile(path,'utf8')
             .then((contents) => {
                 // log the file contents
-                // console.log(contents);
+                 console.log(contents);
                 return  JSON.parse(contents)
             })
             .catch((err) => {
