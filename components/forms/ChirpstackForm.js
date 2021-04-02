@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, View, StyleSheet, DeviceEventEmitter } from "react-native";
-import { Text, Icon, Card, Button, Input, SelectItem, Select, IndexPath } from "@ui-kitten/components";
+import { Text, Icon, Card, Button, Input, SelectItem, Select, IndexPath, CheckBox } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
 import { addDevice } from "../../api/Chirpstack";
@@ -12,6 +12,7 @@ const checkIcon = (props) => (
 function ChirpstackForm(props) {
     const { control, handleSubmit, errors } = useForm({ mode: 'onChange' });
     const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0))
+    const [checked, setChecked] = useState(false)
     const name_reg = /^([a-zA-Z0-9-]*)$/
 
     const onSubmit = async data => {
@@ -131,11 +132,18 @@ function ChirpstackForm(props) {
             </Card>
 
             <Button
+                disabled={!checked}
                 style={styles.button}
                 accessoryLeft={checkIcon}
                 onPress={handleSubmit(onSubmit)}>
                 Submit
-                </Button>
+            </Button>
+
+            <CheckBox style={styles.check}
+                checked={checked}
+                onChange={nextChecked => setChecked(nextChecked)}>
+                <Text status='info'> I accept all certificates of authority (CA) </Text>
+            </CheckBox>
 
         </ScrollView >
 
@@ -143,6 +151,10 @@ function ChirpstackForm(props) {
 }
 
 const styles = StyleSheet.create({
+    check: {
+        justifyContent: 'center',
+        marginTop: '5%'
+    },
     main_view: {
         paddingTop: '2%',
         flex: 1,
