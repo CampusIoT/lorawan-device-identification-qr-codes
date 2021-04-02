@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, DeviceEventEmitter } from "react-native";
+import { SafeAreaView, View, StyleSheet } from "react-native";
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
@@ -10,14 +10,17 @@ const checkIcon = (props) => (
 );
 
 function TTNLogin(props) {
-    const { control, handleSubmit, errors } = useForm();
+    const { control, handleSubmit, errors } = useForm({mode: 'onChange'});
 
     const onSubmit = async data => {
-        storeLogTTN(APIKey)
+        storeLogTTN(data.APIKey)
+        props.navigation.goBack()
     }
 
     return (
-        <ScrollView style={styles.main_view}>
+        <SafeAreaView style={styles.main_view}>
+
+            <Text style={styles.title}> TTN Login </Text>
 
             <Card style={styles.card} status='primary' disabled={true}>
                 <View style={styles.view_form}>
@@ -38,6 +41,7 @@ function TTNLogin(props) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
+                    {errors.APIKey && <Card status='danger'><Text> You must have to put an API Key </Text></Card>}
                 </View>
             </Card>
 
@@ -47,7 +51,8 @@ function TTNLogin(props) {
                 onPress={handleSubmit(onSubmit)}>
                 Submit
             </Button>
-        </ScrollView >
+
+        </SafeAreaView >
 
     )
 }
@@ -76,6 +81,12 @@ const styles = StyleSheet.create({
         marginLeft: '2%',
         marginRight: '2%',
         marginTop: '2%'
+    },
+    title: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: 15
     }
 })
 
@@ -90,4 +101,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TTNForm)
+export default connect(mapStateToProps, mapDispatchToProps)(TTNLogin)

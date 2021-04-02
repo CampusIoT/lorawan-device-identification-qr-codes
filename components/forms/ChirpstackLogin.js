@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View, StyleSheet, DeviceEventEmitter } from "react-native";
+import { SafeAreaView, View, StyleSheet, DeviceEventEmitter } from "react-native";
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
@@ -9,15 +9,18 @@ const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />
 );
 
-function TTNLogin(props) {
+function ChirpstackLogin(props) {
     const { control, handleSubmit, errors } = useForm();
 
     const onSubmit = async data => {
         storeLogChirpstack(data.login, data.passwd)
+        props.navigation.goBack()
     }
 
     return (
-        <ScrollView style={styles.main_view}>
+        <SafeAreaView style={styles.main_view}>
+
+            <Text style={styles.title}> Chirpstack Login </Text>
 
             <Card style={styles.card} status='primary' disabled={true}>
                 <View style={styles.view_form}>
@@ -39,6 +42,8 @@ function TTNLogin(props) {
                         defaultValue=""
                     />
 
+                    {errors.login && <Card status='danger'><Text> You must have to put a login </Text></Card>}
+
                     <Controller
                         control={control}
                         render={({ onChange, onBlur, value }) => (
@@ -49,6 +54,7 @@ function TTNLogin(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
+                                    secureTextEntry={true}
                                 />
                             </>
                         )}
@@ -56,6 +62,8 @@ function TTNLogin(props) {
                         rules={{ required: true }}
                         defaultValue=""
                     />
+
+                    {errors.passwd && <Card status='danger'><Text> You must have to put a password </Text></Card>}
                 </View>
             </Card>
 
@@ -65,7 +73,7 @@ function TTNLogin(props) {
                 onPress={handleSubmit(onSubmit)}>
                 Submit
             </Button>
-        </ScrollView >
+        </SafeAreaView >
 
     )
 }
@@ -94,6 +102,12 @@ const styles = StyleSheet.create({
         marginLeft: '2%',
         marginRight: '2%',
         marginTop: '2%'
+    },
+    title: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: 15
     }
 })
 
@@ -108,4 +122,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TTNForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ChirpstackLogin)

@@ -5,6 +5,8 @@ import NodeRegisterPage from '../components/NodeRegisterPage'
 import HomePage from '../components/HomePage'
 import NetworkSelection from '../components/NetworkSelection/'
 import ApplicationSelection from '../components/ApplicationSelection'
+import ChirpstackLogin from '../components/forms/ChirpstackLogin'
+import TTNLogin from '../components/forms/TTNLogin'
 
 const Stack = createStackNavigator()
 
@@ -29,12 +31,22 @@ export default function MainNav() {
             <Stack.Screen
                 name='NetworkSelection'
                 component={NetworkSelection}
-                options={{ headerShown: false}}
+                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name='ApplicationSelection'
                 component={ApplicationSelection}
-                options={{ headerShown: false}}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name='ChirpstackLogin'
+                component={ChirpstackLogin}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name='TTNLogin'
+                component={TTNLogin}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
