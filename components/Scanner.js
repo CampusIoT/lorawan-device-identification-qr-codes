@@ -14,7 +14,7 @@ class Scanner extends Component {
         const ds = elt.data.split(':')
         if (ds.length !== 0 && ds[0] === "LW" ) {
             this.props.dispatch({ type: 'ADD_NODE', value: elt.data })
-            this.props.navigation.navigate('Forms')
+            this.props.navigation.navigate('Forms', {disabled : true})
             this.props.setScan(false)
         } else {
             alert("The QR Code is not a LoRaWAN's")

@@ -22,19 +22,36 @@ function HomePage(props) {
             <>
                 <View style={styles.screen}>
                     <Text style={styles.text}>ScanWAN</Text>
-                    <TouchableOpacity style={styles.touchable} onPress={() => {
-                        // console.log(props.jwt)
-                        if (props.selectedNetwork === undefined) {
-                            alert("Error, please choose a network ! ")
-                        } else if (props.selectedApp === undefined) {
-                            alert("Error, please choose a application ! ")
-                        } else {
-                            setScan(true)
+
+                    <View style={styles.registerButtons}>
+                        <TouchableOpacity style={styles.touchable} onPress={() => {
+                            if (props.selectedNetwork === undefined) {
+                                alert("Error, please choose a network ! ")
+                            } else if (props.selectedApp === undefined) {
+                                alert("Error, please choose a application ! ")
+                            } else {
+                                setScan(true)
+                            }
                         }
-                    }
-                    }>
-                        <Image style={styles.qrcode} source={require("../assets/qrcode.png")} />
-                    </TouchableOpacity>
+                        }>
+                            <Image style={styles.qrcode} source={require("../assets/qrcode.png") } />
+                        </TouchableOpacity>
+
+                        <Button style={styles.manual_button} appearance='ghost' onPress={() => {
+                            if (props.selectedNetwork === undefined) {
+                                alert("Error, please choose a network ! ")
+                            } else if (props.selectedApp === undefined) {
+                                alert("Error, please choose a application ! ")
+                            } else {
+                                props.navigation.navigate('Forms',{disabled:false})
+                                // console.log(this.props.navigate.route.params)
+                            }
+                        }
+                        }>
+                            Add a device manually
+                        </Button>
+                    </View>
+
                 </View>
                 <View style={styles.button_view}>
                     <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
@@ -53,7 +70,7 @@ function HomePage(props) {
             <Scanner setScan={setScan} navigation={props.navigation} />
         )
     }
-    
+
 
     return (
         <SafeAreaView style={styles.main_view}>
@@ -72,7 +89,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 2,
         justifyContent: "space-around",
-        alignItems: 'center',
+        alignItems: 'center'
     },
 
     touchable: {
@@ -91,6 +108,15 @@ const styles = StyleSheet.create({
         width: "80%",
         margin: 20,
         textAlign: 'center'
+    },
+    manual_button: {
+        width: "60%",
+        margin: 20,
+        textAlign: 'center'
+    },
+    registerButtons :{
+        alignItems:'center',
+        width : '100%',     
     }
 
 

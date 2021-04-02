@@ -34,7 +34,7 @@ function ChirpstackForm(props) {
     const setDefault = name => {
         switch (name) {
             case 'name':
-                return "device-" + props.device.devEUI.substring(0, 8)
+                return props.device.devEUI === undefined ? "device" : "device-" + props.device.devEUI.substring(0, 8)
             case 'description':
                 return 'A new device'
             default:
@@ -44,7 +44,7 @@ function ChirpstackForm(props) {
 
     return (
         <ScrollView style={styles.main_view}>
-            <Card style={styles.card} status='primary' disabled={true}>
+            <Card style={styles.card} status='primary' disabled={props.disabled}>
                 <View style={styles.view_form}>
                     <Controller
                         control={control}
@@ -91,12 +91,12 @@ function ChirpstackForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
-                                    disabled={true}
+                                    disabled={props.disabled}
                                 />
                             </>
                         )}
                         name="devEUI"
-                        defaultValue={props.device.devEUI}
+                        defaultValue={props.device.devEUI !== undefined ? props.device.devEUI : ""}
                     />
 
                     {<Text category="p1">Profile ID</Text>}
@@ -116,12 +116,12 @@ function ChirpstackForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
-                                    disabled={true}
+                                    disabled={props.disabled}
                                 />
                             </>
                         )}
                         name="appEUI"
-                        defaultValue={props.device.appEUI}
+                        defaultValue={props.device.appEUI !== undefined ? props.device.appEUI : ""}
                     />
 
                 </View>
