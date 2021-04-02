@@ -1,9 +1,12 @@
+import { Text, Button, ButtonGroup } from '@ui-kitten/components'
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, FlatList, Text } from 'react-native'
+import { SafeAreaView, View, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import ChirpstackForm from './forms/ChirpstackForm';
 import NetworkItem from './NetworkItem'
 import { getLogChirpstack, getLogTTN, storeLogChirpstack, storeLogTTN } from './Storage';
+
+const networks = ['Chirpstack', 'TTN']
 
 class NetworkSelection extends React.Component {
 
@@ -47,7 +50,7 @@ class NetworkSelection extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
+            <SafeAreaView style={styles.safe}>
                 <View>
                     <Text style={styles.title}>Network Selection</Text>
                     <Text style={styles.instruction}> Select a network to register your node in</Text>
@@ -58,6 +61,15 @@ class NetworkSelection extends React.Component {
                     keyExtractor={item => item.id}
                     ItemSeparatorComponent={renderSeparator}
                 />
+
+                <View style={styles.buttons_view}>
+                    <Text appearance='hint'> Add a new Network Account </Text>
+                    <ButtonGroup status='info'>
+                        <Button onPress={this._addChirpstackAccount}> Chirpstack </Button>
+                        <Button onPress={this._addTTNAccount}> TTN </Button>
+                    </ButtonGroup>
+                </View>
+
             </SafeAreaView>
         )
     }
@@ -70,6 +82,13 @@ const renderSeparator = () => {
 }
 
 const styles = StyleSheet.create({
+    safe: {
+        flex: 1,
+    },
+    buttons_view: {
+        flex: 1,
+        alignItems: 'center'
+    },
     title: {
         fontSize: 36,
         fontWeight: 'bold',

@@ -33,8 +33,6 @@ export function storeLogChirpstack(login, password) {
     const path = RNFS.DocumentDirectoryPath + '/chirpstack.json';
 
     return (
-
-        
         // write the file
         RNFS.writeFile(path, '{"name" : "Chirpstack" , "login" : "' + login + '","password" : "' + password + '" }', 'utf8')
             .then((success) => {
