@@ -22,15 +22,17 @@ class NodeRegisterPage extends React.Component {
     componentDidMount() {
         if (this.props.selectedNetwork === 'Chirpstack') {
             getProfile(this.props.jwt).then(data => this.setState({ profiles: data.result, loading: false })).catch(error => alert('error\n' + error))
+        } else {
+            this.setState({loading : false})
         }
     }
 
     _display_form(profiles) {
         const api = this.props.selectedNetwork
         if (api === 'Chirpstack') {
-            return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} />
+            return <ChirpstackForm profiles={profiles} navigation={this.props.navigation} disabled={this.props.route.params.disabled}/>
         } else {
-            return <TTNForm navigation={this.props.navigation} />
+            return <TTNForm navigation={this.props.navigation} disabled={this.props.route.params.disabled}/>
         }
 
     }
