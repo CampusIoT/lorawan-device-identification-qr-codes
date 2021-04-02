@@ -19,7 +19,8 @@ class NetworkItem extends React.Component {
             this.props.dispatch({ type: 'ADD_LOG', value: { login: login, password: password } })
             token = await getToken(login, password)
         } else {
-            token = network.apiKey
+            console.log(network)
+            token = network.APIkey
         }
 
         this.props.dispatch({ type: 'ADD_JWT', value: token })

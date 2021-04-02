@@ -14,7 +14,7 @@ function ChirpstackLogin(props) {
 
     const onSubmit = async data => {
         storeLogChirpstack(data.login, data.passwd)
-        props.navigation.goBack()
+        props.navigation.popToTop()
     }
 
     return (

@@ -2,6 +2,7 @@ export async function getToken(id, pwd) {
     const url = 'https://lns.campusiot.imag.fr/api/internal/login'
     const content = JSON.stringify({ username: id, password: pwd })
     const headers = new Headers()
+    console.log(id, pwd)
     headers.append('Content-Type', 'application/json')
     const token = await fetch(url, {
         method: "POST",

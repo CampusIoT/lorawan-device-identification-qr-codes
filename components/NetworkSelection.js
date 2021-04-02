@@ -1,28 +1,53 @@
 import { Text, Button, ButtonGroup } from '@ui-kitten/components'
 import React from 'react';
 import { SafeAreaView, View, StyleSheet, FlatList } from 'react-native'
+import { connect } from 'react-redux'
+import ChirpstackForm from './forms/ChirpstackForm';
 import NetworkItem from './NetworkItem'
+import { getLogChirpstack, getLogTTN, storeLogChirpstack, storeLogTTN } from './Storage';
 
 const networks = ['Chirpstack', 'TTN']
 
 class NetworkSelection extends React.Component {
+
     constructor(props) {
         super(props)
-        this.networks = [{
-            id: '1',
-            name: 'Chirpstack',
-            image: require('../assets/logo_chirpstack.png'),
-            login: 'GuestSandbox',
-            password: 'mF3rC3tD8hA8hH5j'
-        },
-        {
-            id: '2',
-            name: 'The Things Network',
-            image: require('../assets/logo_ttn.png'),
-            login: '',
-            apiKey: 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ'
-        },
-        ]
+        this.state = {
+            networks: []
+        }
+    }
+
+    componentDidMount() {
+        this._getLogs();
+    }
+
+    _getLogs(){
+        getLogChirpstack()
+            .then(data => {
+                if (data !== undefined) {
+                    data = {
+                        ...data,
+                        image: require("../assets/logo_chirpstack.png"),
+                        id: "0"
+                    }
+                    let nets = [data]
+                    this.setState({ networks: nets })
+                }
+            })
+            .catch(error => alert(error));
+        getLogTTN()
+            .then(data => {
+                if (data !== undefined) {
+                    data = {
+                        ...data,
+                        image: require("../assets/logo_ttn.png"),
+                        id: "1"
+                    }
+                    let nets = [...this.state.networks, data]
+                    this.setState({ networks: nets })
+                }
+            })
+            .catch(error => alert(error));
     }
 
     _addChirpstackAccount = () => {
@@ -41,7 +66,7 @@ class NetworkSelection extends React.Component {
                     <Text style={styles.instruction}> Select a network to register your node in</Text>
                 </View>
                 <FlatList
-                    data={this.networks}
+                    data={this.state.networks}
                     renderItem={(item) => <NetworkItem network={item.item} navigator={this.props.navigation} />}
                     keyExtractor={item => item.id}
                     ItemSeparatorComponent={renderSeparator}

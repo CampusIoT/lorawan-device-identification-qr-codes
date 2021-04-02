@@ -44,7 +44,7 @@ export async function addDevice (contentDevice, APIKey){
         .then(response => response.json())
         .then(result => {
             if (result.code === 6) {
-                alert("ID already taken.\nPlease, change.")
+                alert("Device already registered.\nPlease, change.")
                 return result.code
             }
             return 0

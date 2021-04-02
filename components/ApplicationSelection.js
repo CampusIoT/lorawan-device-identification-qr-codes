@@ -14,6 +14,7 @@ class ApplicationSelection extends React.Component {
     async componentDidMount() {
         let applications
         let token = this.props.jwt
+        console.log(token)
         if (this.props.selectedNetwork === 'Chirpstack')
             applications = ChirpstackFetcher(token).then(data => this.setState({ applications: data.result })).catch(error => alert('error\n' + error))
         else
@@ -28,7 +29,7 @@ class ApplicationSelection extends React.Component {
     render() {
         // console.log(this.state.applications)
         return (
-            
+
             <SafeAreaView>
                 <FlatList
                     data={this.state.applications}
