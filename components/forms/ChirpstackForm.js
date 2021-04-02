@@ -24,6 +24,7 @@ function ChirpstackForm(props) {
         }
         const res = await addDevice(data, props.jwt)
 
+        console.log(res)
         if (res === 0) {
             alert("The device has correctly been added")
             DeviceEventEmitter.emit("event.setScan")

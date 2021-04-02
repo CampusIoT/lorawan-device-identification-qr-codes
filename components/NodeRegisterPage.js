@@ -40,14 +40,6 @@ class NodeRegisterPage extends React.Component {
     render() {
         return (
             <View style={styles.main_view}>
-                <View style={styles.restart_view}>
-                    <Button
-                        style={styles.button}
-                        accessoryLeft={arrowBackIcon}
-                        onPress={() => console.log("Restart pressed")}>
-                        Restart registration
-                    </Button>
-                </View>
                 {!this.state.loading && this._display_form(this.state.profiles)}
             </View>
         );
