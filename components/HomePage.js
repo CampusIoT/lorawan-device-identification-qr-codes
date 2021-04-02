@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import { Button, Text } from '@ui-kitten/components'
 import Scanner from './Scanner';
 import { DeviceEventEmitter } from 'react-native'
 import { connect } from 'react-redux'
 
-function HomePage(props) {
+class HomePage extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isScan: false,
+            isSelectedN: false,
+            isSelectedA: false
+        }
+    }
+
+    _setScan = (bool) => {
+        this.setState({ isScan: bool })
+    }
+
+    _getSelectedN = (bool) => {
+        this.setState({ isSelectedN: bool })
+    }
+
+    _getSelectedA = (bool) => {
+        this.setState({ isSelectedA: bool })
+    }
+
+    componentDidMount() {
+        DeviceEventEmitter.addListener("event.setScan", () => { this._setScan(true) })
+        DeviceEventEmitter.addListener("event.SelectedN", () => { this._getSelectedN(true), this._getSelectedA(false), this.props.selectedApp = '' })
+        DeviceEventEmitter.addListener("event.SelectedA", () => { this._getSelectedA(true) })
+    }
+
+    componentWillUnmount() {
+        DeviceEventEmitter.removeAllListeners()
+    }
 
 
-    const [isScan, setScan] = useState(false)
-    const [isSelectedN, getSelectedN] = useState(false)
-    const [isSelectedA, getSelectedA] = useState(false)
 
-    DeviceEventEmitter.addListener("event.setScan", () => { setScan(true) })
-    DeviceEventEmitter.addListener("event.SelectedN", () => { getSelectedN(true), getSelectedA(false), props.selectedApp = '' })
-    DeviceEventEmitter.addListener("event.SelectedA", () => { getSelectedA(true) })
-
-
-    const _mainDisplay = () => {
+    _mainDisplay = () => {
         return (
             <>
                 <View style={styles.screen}>
@@ -25,25 +47,25 @@ function HomePage(props) {
 
                     <View style={styles.registerButtons}>
                         <TouchableOpacity style={styles.touchable} onPress={() => {
-                            if (props.selectedNetwork === undefined) {
+                            if (this.props.selectedNetwork === undefined) {
                                 alert("Error, please choose a network ! ")
-                            } else if (props.selectedApp === undefined) {
+                            } else if (this.props.selectedApp === undefined) {
                                 alert("Error, please choose a application ! ")
                             } else {
-                                setScan(true)
+                                this._setScan(true)
                             }
                         }
                         }>
-                            <Image style={styles.qrcode} source={require("../assets/qrcode.png") } />
+                            <Image style={styles.qrcode} source={require("../assets/qrcode.png")} />
                         </TouchableOpacity>
 
                         <Button style={styles.manual_button} appearance='ghost' onPress={() => {
-                            if (props.selectedNetwork === undefined) {
+                            if (this.props.selectedNetwork === undefined) {
                                 alert("Error, please choose a network ! ")
-                            } else if (props.selectedApp === undefined) {
+                            } else if (this.props.selectedApp === undefined) {
                                 alert("Error, please choose a application ! ")
                             } else {
-                                props.navigation.navigate('Forms',{disabled:false})
+                                this.props.navigation.navigate('Forms', { disabled: false })
                                 // console.log(this.props.navigate.route.params)
                             }
                         }
@@ -54,32 +76,33 @@ function HomePage(props) {
 
                 </View>
                 <View style={styles.button_view}>
-                    <Button style={styles.button} onPress={() => props.navigation.navigate("NetworkSelection")}>
-                        {!isSelectedN ? 'Select a network' : props.selectedNetwork + ' is selected'}
+                    <Button style={styles.button} onPress={() => this.props.navigation.navigate("NetworkSelection")}>
+                        {!this.state.isSelectedN ? 'Select a network' : this.props.selectedNetwork + ' is selected'}
                     </Button>
-                    <Button style={styles.button} onPress={() => props.navigation.navigate("ApplicationSelection")} disabled={!isSelectedN}>
-                        {!isSelectedA ? 'Select an application ' : props.selectedApp + ' is selected'}
+                    <Button style={styles.button} onPress={() => this.props.navigation.navigate("ApplicationSelection")} disabled={!this.state.isSelectedN}>
+                        {!this.state.isSelectedA ? 'Select an application ' : this.props.selectedApp + ' is selected'}
                     </Button>
                 </View>
             </>
         )
     }
 
-    const _scan = () => {
+    _scan = () => {
         return (
-            <Scanner setScan={setScan} navigation={props.navigation} />
+            <Scanner setScan={this._setScan} navigation={this.props.navigation} />
         )
     }
 
 
-    return (
-        <SafeAreaView style={styles.main_view}>
-            { isScan && _scan()}
-            { !isScan && _mainDisplay()}
-        </SafeAreaView>
-    )
+    render() {
+        return (
+            <SafeAreaView style={styles.main_view} >
+                { this.state.isScan && this._scan()}
+                { !this.state.isScan && this._mainDisplay()}
+            </SafeAreaView >
+        )
 
-
+    }
 }
 
 const styles = StyleSheet.create({
@@ -114,9 +137,9 @@ const styles = StyleSheet.create({
         margin: 20,
         textAlign: 'center'
     },
-    registerButtons :{
-        alignItems:'center',
-        width : '100%',     
+    registerButtons: {
+        alignItems: 'center',
+        width: '100%',
     }
 
 

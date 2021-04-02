@@ -153,9 +153,12 @@ export async function addDevice(deviceContent, token) {
     })
         .then(response => response.json())
         .then(result => {
-            // console.log(result)
+            console.log(result)
             if (result.code === 16) {
                 alert("Session expired.\nPlease, log in.")
+                return -1
+            } else if (result.code === 6) {
+                alert("The device is already in this Network")
                 return -1
             }
             return 0
