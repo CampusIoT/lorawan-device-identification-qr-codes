@@ -23,7 +23,6 @@ class NodeRegisterPage extends React.Component {
         if (this.props.selectedNetwork === 'Chirpstack') {
             getProfile(this.props.jwt).then(data => this.setState({ profiles: data.result, loading: false })).catch(error => alert('error\n' + error))
         }
-        // return
     }
 
     _display_form(profiles) {
