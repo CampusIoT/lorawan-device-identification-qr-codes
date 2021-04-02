@@ -46,7 +46,7 @@ function TTNForm(props) {
     const setDefault = name => {
         switch (name) {
             case 'name':
-                return "dev"+ props.device.devEUI.substring(0, 4).toLowerCase()
+                return props.device.devEUI !==undefined ?"dev"+ props.device.devEUI.substring(0, 4).toLowerCase() : "device"
             case 'description':
                 return 'A new device'
             default:
@@ -57,7 +57,7 @@ function TTNForm(props) {
     return (
         <ScrollView style={styles.main_view}>
 
-            <Card style={styles.card} status='primary' disabled={true}>
+            <Card style={styles.card} status='primary' disabled={props.disabled}>
                 <View style={styles.view_form}>
 
                     <Controller
@@ -130,12 +130,12 @@ function TTNForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
-                                    disabled={true}
+                                    disabled={props.disabled}
                                 />
                             </>
                         )}
                         name="dev_eui"
-                        defaultValue={props.device.devEUI}
+                        defaultValue={props.device.devEUI !== undefined ? props.device.devEUI : ""}
                     />
 
                     <Controller
@@ -148,12 +148,12 @@ function TTNForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
-                                    disabled={true}
+                                    disabled={props.disabled}
                                 />
                             </>
                         )}
                         name="join_eui"
-                        defaultValue={props.device.appEUI}
+                        defaultValue={props.device.appEUI !== undefined ? props.device.appEUI : ""}
                     />
 
 
