@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, DeviceEventEmitter } from "react-native";
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
+import { storeLogTTN } from '../Storage'
 
 const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />
@@ -12,7 +13,7 @@ function TTNLogin(props) {
     const { control, handleSubmit, errors } = useForm();
 
     const onSubmit = async data => {
-        this.props.dispatch({type: 'jwt', value: data.APIkey})
+        storeLogTTN(APIKey)
     }
 
     return (
@@ -33,7 +34,7 @@ function TTNLogin(props) {
                                 />
                             </>
                         )}
-                        name="APIkey"
+                        name="APIKey"
                         rules={{ required: true }}
                         defaultValue=""
                     />
