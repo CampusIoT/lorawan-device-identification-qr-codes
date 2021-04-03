@@ -16,11 +16,9 @@ export async function getAppList(APIKey){
     })  
     .then(response => response.json())
     .then(result => {
-        console.log(result)
         return result})
     .catch((error) => {
         alert("Sorry error")
-        console.log(error)
     })
     return appList;
 }

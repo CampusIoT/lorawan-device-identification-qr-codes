@@ -23,7 +23,7 @@ function TTNForm(props) {
                     dev_eui: data.dev_eui,
                     join_eui: data.join_eui,
                     application_ids: {
-                        application_id: "test-app-tqt"
+                        application_id: props.appID
                     },
                     dev_addr: "00000000"
                 },
@@ -204,7 +204,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         device: state.device,
-        jwt: state.jwt
+        jwt: state.jwt,
+        appID: state.applicationID
     }
 }
 
