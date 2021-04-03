@@ -1,6 +1,6 @@
-import React from "react";
-import { ScrollView, View, Alert, StyleSheet, DeviceEventEmitter } from "react-native";
-import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
+import React, {useState} from "react";
+import { ScrollView, View, Alert, StyleSheet, DeviceEventEmitter} from "react-native";
+import { Text, Icon, Card, Button, Input, CheckBox } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
 import { addDevice } from '../../api/TTN'
@@ -10,8 +10,9 @@ const checkIcon = (props) => (
 );
 
 function TTNForm(props) {
-    const { control, handleSubmit, errors } = useForm({ mode: 'onChange' });
-
+    const { control, handleSubmit, errors } = useForm({mode:'onChange'});
+    const [checked, setChecked] = useState(false)
+ 
     const regex1 = /^[a-z0-9](?:[-]?[a-z0-9]){2,}$/
 
 
@@ -169,9 +170,17 @@ function TTNForm(props) {
             <Button
                 style={styles.button}
                 accessoryLeft={checkIcon}
-                onPress={handleSubmit(onSubmit)}>
+                onPress={handleSubmit(onSubmit)}
+                disabled={!checked}>
+                
                 Submit
-                </Button>
+            </Button>
+
+            <CheckBox style={styles.check}
+                checked={checked}
+                onChange={nextChecked => setChecked(nextChecked)}>
+                <Text status='info'> I accept all certificates of authority (CA) </Text>
+            </CheckBox>
 
         </ScrollView >
 
@@ -179,6 +188,10 @@ function TTNForm(props) {
 }
 
 const styles = StyleSheet.create({
+    check: {
+        justifyContent: 'center',
+        marginTop: '5%'
+    },
     main_view: {
         paddingTop: '2%',
         flex: 1,
