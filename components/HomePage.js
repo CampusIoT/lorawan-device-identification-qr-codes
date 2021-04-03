@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, Image, TouchableOpacity } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Image, TouchableOpacity, Alert } from 'react-native'
 import { Button, Text } from '@ui-kitten/components'
 import Scanner from './Scanner';
 import { DeviceEventEmitter } from 'react-native'
@@ -48,9 +48,9 @@ class HomePage extends React.Component {
                     <View style={styles.registerButtons}>
                         <TouchableOpacity style={styles.touchable} onPress={() => {
                             if (this.props.selectedNetwork === undefined) {
-                                alert("Error, please choose a network ! ")
+                                Alert.alert("Error", "Please choose a network ! ")
                             } else if (this.props.selectedApp === undefined) {
-                                alert("Error, please choose a application ! ")
+                                Alert.alert("Error", "Please choose a application ! ")
                             } else {
                                 this._setScan(true)
                             }
@@ -61,12 +61,11 @@ class HomePage extends React.Component {
 
                         <Button style={styles.manual_button} appearance='ghost' onPress={() => {
                             if (this.props.selectedNetwork === undefined) {
-                                alert("Error, please choose a network ! ")
+                                Alert.alert("Error", "Please choose a network ! ")
                             } else if (this.props.selectedApp === undefined) {
-                                alert("Error, please choose a application ! ")
+                                Alert.alert("Error", "Please choose a application ! ")
                             } else {
                                 this.props.navigation.navigate('Forms', { disabled: false })
-                                // console.log(this.props.navigate.route.params)
                             }
                         }
                         }>

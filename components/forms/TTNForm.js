@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View, TextInput, Alert, StyleSheet, DeviceEventEmitter } from "react-native";
+import { ScrollView, View, Alert, StyleSheet, DeviceEventEmitter } from "react-native";
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
@@ -10,10 +10,10 @@ const checkIcon = (props) => (
 );
 
 function TTNForm(props) {
-    const { control, handleSubmit, errors } = useForm({mode:'onChange'});
+    const { control, handleSubmit, errors } = useForm({ mode: 'onChange' });
 
     const regex1 = /^[a-z0-9](?:[-]?[a-z0-9]){2,}$/
-    
+
 
     const onSubmit = async data => {
         data = {
@@ -31,14 +31,14 @@ function TTNForm(props) {
                 description: data.description
             }
         }
-       
+
         const res = await addDevice(data, props.jwt)
 
-        console.log(res)
         if (res === 0) {
-            alert("The device has correctly been added")
-            DeviceEventEmitter.emit("event.setScan")
-            console.log(props.navigation)
+            Alert.alert("Succes","The device has correctly been added")
+            if (props.disabled === true){
+                DeviceEventEmitter.emit("event.setScan")
+            }
             props.navigation.popToTop()
         }
     }
@@ -46,11 +46,11 @@ function TTNForm(props) {
     const setDefault = name => {
         switch (name) {
             case 'name':
-                return props.device.devEUI !==undefined ?"dev"+ props.device.devEUI.substring(0, 4).toLowerCase() : "device"
+                return props.device.devEUI !== undefined ? "dev" + props.device.devEUI.substring(0, 4).toLowerCase() : "device"
             case 'description':
                 return 'A new device'
             default:
-                alert("PANIC! => set default value in chirpstack form")
+                Alert.alert("PANIC! => set default value in chirpstack form")
         }
     }
 
@@ -70,16 +70,18 @@ function TTNForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
+                                    autoCapitalize='none'
+                                    autoCorrect={false}
                                 />
                             </>
                         )}
                         name="name"
-                        rules={{pattern: regex1}}
+                        rules={{ pattern: regex1 }}
                         defaultValue=""
                     />
 
                     {errors.name && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
-                    
+
 
                     <Controller
                         control={control}
@@ -91,14 +93,16 @@ function TTNForm(props) {
                                     onBlur={onBlur}
                                     onChangeText={value => onChange(value)}
                                     value={value}
+                                    autoCapitalize='none'
+                                    autoCorrect={false}
                                 />
                             </>
                         )}
-                        rules={{pattern: regex1}}
+                        rules={{ pattern: regex1 }}
                         name="device_id"
                         defaultValue={setDefault('name')}
                     />
-                     {errors.device_id && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
+                    {errors.device_id && <Card status='danger'><Text>The name has to contain small caps and number only and a length > 2! </Text></Card>}
 
 
                     <Controller

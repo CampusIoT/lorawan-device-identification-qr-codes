@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import QRCodeScanner from 'react-native-qrcode-scanner'
 import { RNCamera } from 'react-native-camera'
 import { Text, Button } from '@ui-kitten/components'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 
 class Scanner extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class Scanner extends Component {
             this.props.navigation.navigate('Forms', {disabled : true})
             this.props.setScan(false)
         } else {
-            alert("The QR Code is not a LoRaWAN's")
+            Alert.alert("Error","The QR Code is not a LoRaWAN's")
         }
     }
 

@@ -27,7 +27,6 @@ class ApplicationSelection extends React.Component {
     }
 
     render() {
-        // console.log(this.state.applications)
         return (
 
             <SafeAreaView>

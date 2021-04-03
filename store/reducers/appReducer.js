@@ -63,7 +63,6 @@ export function appReducer(state = initialState, action) {
             }
             return nextState || state
         case 'CHOOSE_APP':
-            console.log(action.value.name, action.value.id)
             nextState = {
                 ...state,
                 selectedApp: action.value.name,

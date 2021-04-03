@@ -1,3 +1,5 @@
+import {Alert } from 'react-native'
+
 export async function getToken(id, pwd) {
     const url = 'https://lns.campusiot.imag.fr/api/internal/login'
     const content = JSON.stringify({ username: id, password: pwd })
@@ -12,13 +14,13 @@ export async function getToken(id, pwd) {
         .then(response => response.json())
         .then(result => {
             if (result.code === 16) {
-                alert("Username or password are not valid.\nPlease, try again.")
+                Alert.alert("Error","Username or password are not valid.\nPlease, try again.")
                 return -1
             }
             return result.jwt
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             console.log("error", error)
         })
 
@@ -39,13 +41,13 @@ export async function getNumberOfApp(token) {
         .then(response => response.json())
         .then(result => {
             if (result.code === 16) {
-                alert("Session expired.\nPlease, log in.")
+                Alert.alert("Error","Session expired.\nPlease, log in.")
                 return -1
             }
             return result.totalCount
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             console.log("error", error)
         })
     return apps
@@ -68,13 +70,13 @@ export async function getAppList(token) {
         .then(response => response.json())
         .then(result => {
             if (result.code === 16) {
-                alert("Session expired.\nPlease, log in.")
+                Alert.alert("Error","Session expired.\nPlease, log in.")
                 return -1
             }
             return result
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             console.log("error", error)
         })
 
@@ -95,13 +97,13 @@ export async function getNumberOfProfile(token) {
         .then(response => response.json())
         .then(result => {
             if (result.code === 16) {
-                alert("Session expired.\nPlease, log in.")
+                Alert.alert("Error","Session expired.\nPlease, log in.")
                 return -1
             }
             return result.totalCount
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             console.log("error", error)
         })
 
@@ -124,13 +126,13 @@ export async function getProfile(token) {
         .then(response => response.json())
         .then(result => {
             if (result.code === 16) {
-                alert("Session expired.\nPlease, log in.")
+                Alert.alert("Error","Session expired.\nPlease, log in.")
                 return -1
             }
             return result
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             console.log("error", error)
         })
 
@@ -143,8 +145,6 @@ export async function addDevice(deviceContent, token) {
     headers.append('Content-Type', 'application/json')
     headers.append('Grpc-Metadata-Authorization', 'Bearer ' + token)
     const content = JSON.stringify({ device: { ...deviceContent } })
-    // console.log(token)
-    // console.log(deviceContent)
 
     const res = await fetch(url, {
         method: "POST",
@@ -155,16 +155,16 @@ export async function addDevice(deviceContent, token) {
         .then(result => {
             console.log(result)
             if (result.code === 16) {
-                alert("Session expired.\nPlease, log in.")
+                Alert.alert("Error","Session expired.\nPlease, log in.")
                 return -1
             } else if (result.code === 6) {
-                alert("The device is already in this Network")
+                Alert.alert("Error","The device is already in this Network")
                 return -1
             }
             return 0
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             console.log("error", error)
         })
 

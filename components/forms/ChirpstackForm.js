@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, View, StyleSheet, DeviceEventEmitter } from "react-native";
+import { ScrollView, View, StyleSheet, DeviceEventEmitter, Alert } from "react-native";
 import { Text, Icon, Card, Button, Input, SelectItem, Select, IndexPath } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
@@ -24,10 +24,11 @@ function ChirpstackForm(props) {
         }
         const res = await addDevice(data, props.jwt)
 
-        console.log(res)
         if (res === 0) {
-            alert("The device has correctly been added")
-            DeviceEventEmitter.emit("event.setScan")
+            Alert.alert("Succes","The device has correctly been added")
+            if (props.disabled === true){
+                DeviceEventEmitter.emit("event.setScan")
+            }
             props.navigation.popToTop()
         }
     }

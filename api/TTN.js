@@ -1,7 +1,6 @@
-const TTN_URL= 'https://eu1.cloud.thethings.network/api/v3'
+import { Alert } from 'react-native'
 
-//Constant used to test
-// const API_KEY = 'NNSXS.WA72CZH2KFB2SWY5FHQOQXZQIPPBQIRJKGOBRIA.TYMDBKXME2BGINAVN4XQRLHSNJQWXBG6GJQMBQT7UDIPQ7IWIHSQ'
+const TTN_URL= 'https://eu1.cloud.thethings.network/api/v3'
 
 export async function getAppList(APIKey){
     const url = TTN_URL + '/applications'
@@ -18,7 +17,7 @@ export async function getAppList(APIKey){
     .then(result => {
         return result})
     .catch((error) => {
-        alert("Sorry error")
+        Alert.alert("Error","Could not find applications")
     })
     return appList;
 }
@@ -33,7 +32,6 @@ export async function addDevice (contentDevice, APIKey){
     headers.append('Content-Type', 'application/json')
     headers.append('Authorization', 'Bearer ' + APIKey)
     const content = JSON.stringify(contentDevice)
-    console.log(content)
     const res = await fetch(url, {
         method: "POST",
         headers: headers,
@@ -42,14 +40,13 @@ export async function addDevice (contentDevice, APIKey){
         .then(response => response.json())
         .then(result => {
             if (result.code === 6) {
-                alert("Device already registered.\nPlease, change.")
+                Alert.alert("Error","Device already registered.\nPlease, change.")
                 return result.code
             }
             return 0
         })
         .catch(error => {
-            alert("Sorry, an issue occured :\n" + error)
-            console.log("error", error)
+            Alert.alert("Error","Sorry, an issue occured :\n" + error)
             return -1
         })
 
