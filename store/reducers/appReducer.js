@@ -89,6 +89,20 @@ export function appReducer(state = initialState, action) {
                 password: action.value.password
             }
             return nextState || state
+        case 'REMOVE_APP': 
+            nextState = {
+                ...state,
+                selectedApp: undefined
+            }
+            return nextState || state
+        case 'CLEAR': {
+            nextState = {
+                ...state,
+                selectedApp: undefined,
+                selectedNetwork: undefined
+            }
+            return nextState || state
+        }
         default:
             return state
     }

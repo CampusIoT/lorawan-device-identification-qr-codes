@@ -29,7 +29,8 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         DeviceEventEmitter.addListener("event.setScan", () => { this._setScan(true) })
-        DeviceEventEmitter.addListener("event.SelectedN", () => { this._getSelectedN(true), this._getSelectedA(false), this.props.selectedApp = '' })
+        DeviceEventEmitter.addListener("event.clear", () => { this._getSelectedN(false), this._getSelectedA(false) })
+        DeviceEventEmitter.addListener("event.SelectedN", () => { this._getSelectedN(true), this._getSelectedA(false) })
         DeviceEventEmitter.addListener("event.SelectedA", () => { this._getSelectedA(true) })
     }
 
@@ -43,9 +44,10 @@ class HomePage extends React.Component {
         return (
             <>
                 <View style={styles.screen}>
-                    <Text style={styles.text}>ScanWAN</Text>
 
+                    <Text style={styles.text}>ScanWAN</Text>
                     <View style={styles.registerButtons}>
+
                         <TouchableOpacity style={styles.touchable} onPress={() => {
                             if (this.props.selectedNetwork === undefined) {
                                 alert("Error, please choose a network ! ")
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
     registerButtons: {
         alignItems: 'center',
         width: '100%',
-    }
+    },
 
 
 })

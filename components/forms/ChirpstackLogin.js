@@ -14,6 +14,8 @@ function ChirpstackLogin(props) {
 
     const onSubmit = async data => {
         storeLogChirpstack(data.login, data.passwd)
+        DeviceEventEmitter.emit("event.clear")
+        props.dispatch({type:'CLEAR', value:''})
         props.navigation.popToTop()
     }
 
