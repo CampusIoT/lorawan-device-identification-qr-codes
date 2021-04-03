@@ -1,10 +1,9 @@
 import React from "react";
-import { SafeAreaView, View, StyleSheet } from "react-native";
+import { SafeAreaView, View, StyleSheet, DeviceEventEmitter } from "react-native";
 import { Text, Icon, Card, Button, Input } from "@ui-kitten/components";
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux'
 import { storeLogTTN } from '../Storage'
-
 const checkIcon = (props) => (
     <Icon {...props} name='done-all-outline' />
 );
@@ -14,6 +13,8 @@ function TTNLogin(props) {
 
     const onSubmit = async data => {
         await storeLogTTN(data.APIKey)
+        DeviceEventEmitter.emit("event.clear")
+        props.dispatch({type:'CLEAR', value:''})
         props.navigation.popToTop()
     }
 

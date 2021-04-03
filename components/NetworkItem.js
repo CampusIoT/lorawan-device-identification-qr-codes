@@ -24,6 +24,7 @@ class NetworkItem extends React.Component {
         }
 
         this.props.dispatch({ type: 'ADD_JWT', value: token })
+        this.props.dispatch({ type: 'REMOVE_APP', value:'' })
 
         DeviceEventEmitter.emit("event.SelectedN")
         this.props.navigator.popToTop()

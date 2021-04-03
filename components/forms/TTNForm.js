@@ -11,6 +11,7 @@ const checkIcon = (props) => (
 
 function TTNForm(props) {
     const { control, handleSubmit, errors } = useForm({mode:'onChange'});
+    const [checked, setChecked] = useState(false)
 
     const regex1 = /^[a-z0-9](?:[-]?[a-z0-9]){2,}$/
     
@@ -167,7 +168,13 @@ function TTNForm(props) {
                 accessoryLeft={checkIcon}
                 onPress={handleSubmit(onSubmit)}>
                 Submit
-                </Button>
+            </Button>
+
+            <CheckBox style={styles.check}
+                checked={checked}
+                onChange={nextChecked => setChecked(nextChecked)}>
+                <Text status='info'> I accept all certificates of authority (CA) </Text>
+            </CheckBox>
 
         </ScrollView >
 
@@ -175,6 +182,10 @@ function TTNForm(props) {
 }
 
 const styles = StyleSheet.create({
+    check: {
+        justifyContent: 'center',
+        marginTop: '5%'
+    },
     main_view: {
         paddingTop: '2%',
         flex: 1,
