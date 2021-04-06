@@ -99,6 +99,7 @@ function ChirpstackForm(props) {
                             </>
                         )}
                         name="devEUI"
+                        rules={{ required: true }}
                         defaultValue={props.device.devEUI !== undefined ? props.device.devEUI : ""}
                     />
 

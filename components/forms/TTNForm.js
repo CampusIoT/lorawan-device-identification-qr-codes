@@ -99,7 +99,7 @@ function TTNForm(props) {
                                 />
                             </>
                         )}
-                        rules={{ pattern: regex1 }}
+                        rules={{ pattern: regex1, required: true }}
                         name="device_id"
                         defaultValue={setDefault('name')}
                     />
@@ -140,6 +140,7 @@ function TTNForm(props) {
                             </>
                         )}
                         name="dev_eui"
+                        rules={{ required: true }}
                         defaultValue={props.device.devEUI !== undefined ? props.device.devEUI : ""}
                     />
 
@@ -158,6 +159,7 @@ function TTNForm(props) {
                             </>
                         )}
                         name="join_eui"
+                        rules={{ required: true }}
                         defaultValue={props.device.appEUI !== undefined ? props.device.appEUI : ""}
                     />
 
