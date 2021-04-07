@@ -16,3 +16,10 @@ This (iOS and Android) app reads endpoint QRCodes and registers them on LoRaWAN 
     - The mid-term presentation : [Mid-term_Presentation.pdf](https://github.com/CampusIoT/lorawan-device-identification-qr-codes/blob/main/Mid-Term_Presentation.pdf)
     - The tutorial of the application **ScanWAN** : [HowToUse.pdf](https://github.com/CampusIoT/lorawan-device-identification-qr-codes/blob/main/HowToUse.pdf)
     - Integration Tests report : [Integration_Tests.pdf](https://github.com/CampusIoT/lorawan-device-identification-qr-codes/blob/main/Integration_Tests.pdf)
+
+## **TO DO LIST**
+    - Add an OCR to read some long strings
+    - Take in charge the base url for chirpstack and TTN
+    - Add other networks 
+    - Use Tag, variables (location,...)
+ 
